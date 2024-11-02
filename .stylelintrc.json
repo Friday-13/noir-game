@@ -4,5 +4,5 @@
     "block-no-empty": true,
     "color-no-invalid-hex": true
   },
-  "ignoreFiles": ["coverage/**/*"]
+  "ignoreFiles": ["coverage/**/*", "**/*.ts", "**/*.tsx"]
 }
