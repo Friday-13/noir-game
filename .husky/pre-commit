@@ -1,0 +1,4 @@
+npm run format:fix
+npm run styles:fix
+npm run lint:fix
+
