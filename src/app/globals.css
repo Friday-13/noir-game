@@ -30,7 +30,9 @@ body {
   margin: 0;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--cormorant-garamond-font);
 }
 
@@ -38,6 +40,14 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2%;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
 }
 
 a {
