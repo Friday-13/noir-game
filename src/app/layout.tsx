@@ -1,16 +1,15 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import './globals.css';
+import Header from '@/components/header/header';
+import { Cormorant_Garamond, Roboto } from 'next/font/google';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
+const cormorantGaramondFont = Cormorant_Garamond({
+  weight: '400',
+  variable: '--cormorant-garamond-font',
 });
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+const robotoFont = Roboto({
+  weight: '400',
+  variable: '--roboto-font',
 });
 
 export const metadata: Metadata = {
@@ -25,7 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${robotoFont.variable} ${cormorantGaramondFont.variable}`}
+      >
+        <Header />
         {children}
       </body>
     </html>

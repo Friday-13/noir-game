@@ -19,7 +19,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--roboto-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -28,6 +28,16 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+h1, h2, h3 {
+  font-family: var(--cormorant-garamond-font);
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 a {
