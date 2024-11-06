@@ -1,12 +1,12 @@
 :root {
-  --background: #fff;
-  --foreground: #171717;
+  --background: #cdcdcd;
+  --foreground: #272727;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #cdcdcd;
+    --foreground: #272727;
   }
 }
 
@@ -19,9 +19,14 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
+  background: url('/light-background.jpg');
   font-family: var(--roboto-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 * {
@@ -41,6 +46,18 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 2%;
+  position: relative;
+  padding: 20px;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 50%;
+  bottom: 0;
+  left: 25%;
+  background-color: var(--foreground);
 }
 
 footer {
@@ -48,6 +65,22 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 10%;
+  position: relative;
+  padding: 20px;
+}
+
+footer::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 50%;
+  top: 0;
+  left: 25%;
+  background-color: var(--foreground);
+}
+
+main {
+  flex: 1;
 }
 
 a {
@@ -57,6 +90,6 @@ a {
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    color-scheme: light;
   }
 }

@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${robotoFont.variable} ${cormorantGaramondFont.variable}`}
       >
         <Header />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
