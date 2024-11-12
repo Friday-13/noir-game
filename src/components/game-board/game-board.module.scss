@@ -18,21 +18,22 @@
   background: url('/card-background.png');
   padding: 15px;
   box-shadow:
-    rgb(0 0 0 / 12%) 0 1px 6px,
-    rgb(0 0 0 / 24%) 0 1px 4px;
+    rgb(0 0 0 / 12%) 3px 4px 1px,
+    rgb(0 0 0 / 24%) 0 2px 4px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
 
   img {
     margin: 0;
     position: relative;
     border-radius: 2px;
     box-shadow:
-      rgb(0 0 0 / 12%) 0 1px 3px,
-      rgb(0 0 0 / 24%) 0 1px 2px;
+      rgb(0 0 0 / 12%) 2px 3px 2px,
+      rgb(0 0 0 / 24%) 1px 3px 2px;
   }
 
   .character-name {
@@ -41,6 +42,7 @@
     width: 70%;
     border-radius: 2px;
     font-family: var(--cormorant-garamond-font);
+    background-color: rgba(0 0 0 / 3%);
     font-style: italic;
     font-size: 26px;
     text-align: center;
