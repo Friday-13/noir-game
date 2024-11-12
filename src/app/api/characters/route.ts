@@ -8,7 +8,6 @@ export const GET = async (request: NextRequest) => {
   const maxNumber = characters.characters.length;
   const isRandom = searchParams.get('isRandom');
   const number = Number(searchParams.get('number'));
-
   try {
     if (id) {
       const character = characters.characters.find(
@@ -22,7 +21,7 @@ export const GET = async (request: NextRequest) => {
       );
     }
 
-    if (number) {
+    if (!isNaN(number)) {
       if (number > maxNumber) {
         throw Error(`The number shouldn't exceed ${maxNumber}`);
       }

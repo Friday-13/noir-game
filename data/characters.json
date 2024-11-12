@@ -228,12 +228,12 @@
     {
       "id": 16,
       "name": {
-        "eng": "Bram",
-        "ru": "Брэм"
+       "eng": "Cole",
+        "ru": "Коул"
       },
       "photo": {
-        "noir": "/characters/noir-style/Bram_2.png",
-        "victorian": "/characters/victorian-style/Bram_2.png"
+        "noir": "/characters/noir-style/Cole.png",
+        "victorian": "/characters/victorian-style/Cole.png"
       },
       "description": {
         "noir": "Bald head, thick black beard, metal collar, broad shoulders, stern look.",
@@ -303,12 +303,12 @@
     {
       "id": 21,
       "name": {
-        "eng": "Finn",
-        "ru": "Финн"
+        "eng": "Rowan",
+        "ru": "Роэн"
       },
       "photo": {
-        "noir": "/characters/noir-style/Finn_2.png",
-        "victorian": "/characters/victorian-style/Finn_2.png"
+        "noir": "/characters/noir-style/Rowan.png",
+        "victorian": "/characters/victorian-style/Rowan.png"
       },
       "description": {
         "noir": "Tousled red hair, bronze goggles, faint smirk, light freckles.",
@@ -393,12 +393,12 @@
     {
       "id": 27,
       "name": {
-        "eng": "Rex",
-        "ru": "Рекс"
+        "eng": "Silas",
+        "ru": "Сайлас"
       },
       "photo": {
-        "noir": "/characters/noir-style/Rex_2.png",
-        "victorian": "/characters/victorian-style/Rex_2.png"
+        "noir": "/characters/noir-style/Silas.png",
+        "victorian": "/characters/victorian-style/Silas.png"
       },
       "description": {
         "noir": "Gray buzz cut, square jaw, brass nose ring, intense but thoughtful gaze.",
@@ -423,12 +423,12 @@
     {
       "id": 29,
       "name": {
-        "eng": "Mira",
-        "ru": "Мира"
+        "eng": "Estelle",
+        "ru": "Эстель"
       },
       "photo": {
-        "noir": "/characters/noir-style/Mira_2.png",
-        "victorian": "/characters/victorian-style/Mira_2.png"
+        "noir": "/characters/noir-style/Estelle.png",
+        "victorian": "/characters/victorian-style/Estelle.png"
       },
       "description": {
         "noir": "Silver hair, pale skin, dark lipstick, lace choker, piercing gaze.",
