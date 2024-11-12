@@ -1,0 +1,754 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": {
+        "eng": "Bram",
+        "ru": "Брэм"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Bram.png",
+        "victorian": "/characters/victorian-style/Bram.png"
+      },
+      "description": {
+        "noir": "Dark eyes, short black hair, leather collar, brass earring, cold gaze.",
+        "victorian": "Dark, attentive eyes, neatly combed black hair, high lace cravat, brass pocket watch, intense gaze."
+      }
+    },
+    {
+      "id": 2,
+      "name": {
+        "eng": "Jax",
+        "ru": "Джакс"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Jax.png",
+        "victorian": "/characters/victorian-style/Jax.png"
+      },
+      "description": {
+        "noir": "Messy blond hair, stubble, metal eyepiece, smirk, high leather collar.",
+        "victorian": "Wavy blond hair, trimmed beard, brass monocle, hint of a smirk, starched high collar."
+      }
+    },
+    {
+      "id": 3,
+      "name": {
+        "eng": "Finn",
+        "ru": "Финн"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Finn.png",
+        "victorian": "/characters/victorian-style/Finn.png"
+      },
+      "description": {
+        "noir": "Tousled brown hair, round glasses, faint freckles, clockwork earring.",
+        "victorian": "Tousled brown hair, small round spectacles, soft freckles, pocket handkerchief, curious expression."
+      }
+    },
+    {
+      "id": 4,
+      "name": {
+        "eng": "Vex",
+        "ru": "Векс"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Vex.png",
+        "victorian": "/characters/victorian-style/Vex.png"
+      },
+      "description": {
+        "noir": "Black hair tied back, metal jawline, intense stare, collar with rivets.",
+        "victorian": "Slicked black hair, finely groomed mustache, mechanical earpiece, brocade vest, reserved demeanor."
+      }
+    },
+    {
+      "id": 5,
+      "name": {
+        "eng": "Rex",
+        "ru": "Рекс"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Rex.png",
+        "victorian": "/characters/victorian-style/Rex.png"
+      },
+      "description": {
+        "noir": "Cropped hair, metal eye patch, rough jawline, leather shoulder strap.",
+        "victorian": "Short, cropped hair, brass-rimmed spectacles, firm jawline, elegant waistcoat, confident stance."
+      }
+    },
+    {
+      "id": 6,
+      "name": {
+        "eng": "Zane",
+        "ru": "Зейн"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Zane.png",
+        "victorian": "/characters/victorian-style/Zane.png"
+      },
+      "description": {
+        "noir": "Wild gray hair, shadowed eyes, mechanical eyebrow ring, faint grin.",
+        "victorian": "Disheveled gray hair, solemn blue eyes, elaborate cravat, hint of a smirk, velvet lapels."
+      }
+    },
+    {
+      "id": 7,
+      "name": {
+        "eng": "Nix",
+        "ru": "Никс"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Nix.png",
+        "victorian": "/characters/victorian-style/Nix.png"
+      },
+      "description": {
+        "noir": "Shaved head, tattooed neck, piercings, deep-set eyes, faint scowl.",
+        "victorian": "Closely shaved hair, tattoo on neck, faint sneer, high-neck coat, intense expression."
+      }
+    },
+    {
+      "id": 8,
+      "name": {
+        "eng": "Rhys",
+        "ru": "Рис"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Rhys.png",
+        "victorian": "/characters/victorian-style/Rhys.png"
+      },
+      "description": {
+        "noir": "Long mustache, greased-back hair, brass earpiece, intense stare.",
+        "victorian": "Carefully groomed mustache, slicked-back hair, brass cufflinks, steady gaze, lace collar."
+      }
+    },
+    {
+      "id": 9,
+      "name": {
+        "eng": "Theo",
+        "ru": "Тео"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Theo.png",
+        "victorian": "/characters/victorian-style/Theo.png"
+      },
+      "description": {
+        "noir": "Side-parted brown hair, small brass goggles, stubbled chin, serious eyes.",
+        "victorian": "Well-kept brown hair, small round spectacles, gentle expression, velvet waistcoat, thoughtful air."
+      }
+    },
+    {
+      "id": 10,
+      "name": {
+        "eng": "Elan",
+        "ru": "Элан"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Elan.png",
+        "victorian": "/characters/victorian-style/Elan.png"
+      },
+      "description": {
+        "noir": "Light blond hair, scar over eyebrow, military collar, thoughtful look.",
+        "victorian": "Blond, neatly styled hair, scar over brow, high-buttoned vest, introspective look."
+      }
+    },
+    {
+      "id": 11,
+      "name": {
+        "eng": "Jett",
+        "ru": "Джетт"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Jett.png",
+        "victorian": "/characters/victorian-style/Jett.png"
+      },
+      "description": {
+        "noir": "Tousled black hair, single gold hoop earring, sharp jaw, smirking.",
+        "victorian": "Tousled black hair, single gold earring, sharp features, crisp linen shirt, confident smile."
+      }
+    },
+    {
+      "id": 12,
+      "name": {
+        "eng": "Saul",
+        "ru": "Соул"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Saul.png",
+        "victorian": "/characters/victorian-style/Saul.png"
+      },
+      "description": {
+        "noir": "Messy gray hair, metal jawline implant, brass collar, stern frown.",
+        "victorian": "Gray, unruly hair, brass collar clasp, metal jaw implant, furrowed brow, austere clothing."
+      }
+    },
+    {
+      "id": 13,
+      "name": {
+        "eng": "Hugo",
+        "ru": "Хьюго"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Hugo.png",
+        "victorian": "/characters/victorian-style/Hugo.png"
+      },
+      "description": {
+        "noir": "Long dark beard, round goggles, worn leather jacket, deep wrinkles.",
+        "victorian": "Long, well-kept beard, round brass-rimmed glasses, tailored wool coat, wise gaze."
+      }
+    },
+    {
+      "id": 14,
+      "name": {
+        "eng": "Gale",
+        "ru": "Гейл"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Gale.png",
+        "victorian": "/characters/victorian-style/Gale.png"
+      },
+      "description": {
+        "noir": "Shaggy brown hair, circular tattoo around eye, small grin, rough skin.",
+        "victorian": "Thick brown hair, tattoo above brow, grin, velvet waistcoat, worn but warm expression."
+      }
+    },
+    {
+      "id": 15,
+      "name": {
+        "eng": "Cyrus",
+        "ru": "Сайрус"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Cyrus.png",
+        "victorian": "/characters/victorian-style/Cyrus.png"
+      },
+      "description": {
+        "noir": "Slicked-back silver hair, narrow glasses, clockwork ear cuff, smirk.",
+        "victorian": "Slicked silver hair, narrow glasses, chain watch, brocade coat, sly smile."
+      }
+    },
+    {
+      "id": 16,
+      "name": {
+        "eng": "Bram",
+        "ru": "Брэм"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Bram_2.png",
+        "victorian": "/characters/victorian-style/Bram_2.png"
+      },
+      "description": {
+        "noir": "Bald head, thick black beard, metal collar, broad shoulders, stern look.",
+        "victorian": "Bald head, full black beard, simple cravat, dignified air, penetrating look."
+      }
+    },
+    {
+      "id": 17,
+      "name": {
+        "eng": "Lex",
+        "ru": "Лекс"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Lex.png",
+        "victorian": "/characters/victorian-style/Lex.png"
+      },
+      "description": {
+        "noir": "Buzzed hair, metal nose bridge, small scar over lip, distant stare.",
+        "victorian": "Buzzed hair, small scar on lip, ascot tie, brass nose bridge, reflective gaze."
+      }
+    },
+    {
+      "id": 18,
+      "name": {
+        "eng": "Arlo",
+        "ru": "Арло"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Arlo.png",
+        "victorian": "/characters/victorian-style/Arlo.png"
+      },
+      "description": {
+        "noir": "Tousled blond hair, wire-rimmed glasses, calm smile, faint scars.",
+        "victorian": "Tousled blond hair, pince-nez glasses, faint scars, tailored vest, gentle smile."
+      }
+    },
+    {
+      "id": 19,
+      "name": {
+        "eng": "Kian",
+        "ru": "Киан"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Kian.png",
+        "victorian": "/characters/victorian-style/Kian.png"
+      },
+      "description": {
+        "noir": "Shoulder-length brown hair, tattooed neck, soft but watchful eyes.",
+        "victorian": "Shoulder-length brown hair, high collar, carefully crafted cravat, contemplative expression."
+      }
+    },
+    {
+      "id": 20,
+      "name": {
+        "eng": "Jude",
+        "ru": "Джуд"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Jude.png",
+        "victorian": "/characters/victorian-style/Jude.png"
+      },
+      "description": {
+        "noir": "Dark curls, small scar on chin, intense stare, high-collared shirt.",
+        "victorian": "Dark curls, small chin scar, cravat with brooch, steady look, formal high-collared coat."
+      }
+    },
+    {
+      "id": 21,
+      "name": {
+        "eng": "Finn",
+        "ru": "Финн"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Finn_2.png",
+        "victorian": "/characters/victorian-style/Finn_2.png"
+      },
+      "description": {
+        "noir": "Tousled red hair, bronze goggles, faint smirk, light freckles.",
+        "victorian": "Tousled red hair, round glasses, freckles, lace cravat, mischievous air."
+      }
+    },
+    {
+      "id": 22,
+      "name": {
+        "eng": "Milo",
+        "ru": "Мило"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Milo.png",
+        "victorian": "/characters/victorian-style/Milo.png"
+      },
+      "description": {
+        "noir": "Tousled hair, brass monocle, faint smile, scarf around neck.",
+        "victorian": "Soft brown curls, monocle, simple cravat, faint smile, silk scarf."
+      }
+    },
+    {
+      "id": 23,
+      "name": {
+        "eng": "Bo",
+        "ru": "Бо"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Bo.png",
+        "victorian": "/characters/victorian-style/Bo.png"
+      },
+      "description": {
+        "noir": "Messy beard, single hoop earring, leather collar, gruff expression.",
+        "victorian": "Rough beard, modest linen cravat, strong expression, formal coat, working-class pride."
+      }
+    },
+    {
+      "id": 24,
+      "name": {
+        "eng": "Xane",
+        "ru": "Ксейн"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Xane.png",
+        "victorian": "/characters/victorian-style/Xane.png"
+      },
+      "description": {
+        "noir": "Shaved sides, dark tattoo under eye, choker, piercing stare.",
+        "victorian": "Shaved sides, dark tattoo on temple, lace collar, stern look, high coat collar."
+      }
+    },
+    {
+      "id": 25,
+      "name": {
+        "eng": "Cade",
+        "ru": "Кейд"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Cade.png",
+        "victorian": "/characters/victorian-style/Cade.png"
+      },
+      "description": {
+        "noir": "Short red hair, leather strap across shoulder, strong jawline, scowl.",
+        "victorian": "Short red hair, high coat collar, bold jawline, cravat with a pin, stoic demeanor."
+      }
+    },
+    {
+      "id": 26,
+      "name": {
+        "eng": "Vyn",
+        "ru": "Вин"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Vyn.png",
+        "victorian": "/characters/victorian-style/Vyn.png"
+      },
+      "description": {
+        "noir": "Dark slicked-back hair, metal nose ring, small smirk, high collar.",
+        "victorian": "Slicked-back dark hair, modest ear cuff, faint grin, understated attire."
+      }
+    },
+    {
+      "id": 27,
+      "name": {
+        "eng": "Rex",
+        "ru": "Рекс"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Rex_2.png",
+        "victorian": "/characters/victorian-style/Rex_2.png"
+      },
+      "description": {
+        "noir": "Gray buzz cut, square jaw, brass nose ring, intense but thoughtful gaze.",
+        "victorian": "Gray, cropped hair, brass nose stud, velvet cravat, regal bearing."
+      }
+    },
+    {
+      "id": 28,
+      "name": {
+        "eng": "Lira",
+        "ru": "Лира"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Lira.png",
+        "victorian": "/characters/victorian-style/Lira.png"
+      },
+      "description": {
+        "noir": "Curly dark hair, sharp chin, goggles on forehead, thin scar on cheek.",
+        "victorian": "Dark curls, high lace collar, small leather cap, pale skin, perceptive expression."
+      }
+    },
+    {
+      "id": 29,
+      "name": {
+        "eng": "Mira",
+        "ru": "Мира"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Mira_2.png",
+        "victorian": "/characters/victorian-style/Mira_2.png"
+      },
+      "description": {
+        "noir": "Silver hair, pale skin, dark lipstick, lace choker, piercing gaze.",
+        "victorian": "Silvery hair, high-necked dress, dark lipstick, brooch at collar, composed stare."
+      }
+    },
+    {
+      "id": 30,
+      "name": {
+        "eng": "Tess",
+        "ru": "Тесс"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Tess.png",
+        "victorian": "/characters/victorian-style/Tess.png"
+      },
+      "description": {
+        "noir": "Wavy red hair, bronze monocle, delicate earrings, determined expression.",
+        "victorian": "Wavy auburn hair, delicate spectacles, pearl earrings, lace collar, thoughtful gaze."
+      }
+    },
+    {
+      "id": 31,
+      "name": {
+        "eng": "Ivy",
+        "ru": "Айви"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Ivy.png",
+        "victorian": "/characters/victorian-style/Ivy.png"
+      },
+      "description": {
+        "noir": "Long dark braid, small hat with gears, pale skin, stern look.",
+        "victorian": "Long dark braid, mini top hat with satin ribbon, stern look, lace gloves."
+      }
+    },
+    {
+      "id": 32,
+      "name": {
+        "eng": "Lux",
+        "ru": "Люкс"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Lux.png",
+        "victorian": "/characters/victorian-style/Lux.png"
+      },
+      "description": {
+        "noir": "Sleek black hair, brass glasses, choker with chain, knowing smile.",
+        "victorian": "Sleek black hair, wire-rimmed glasses, high-neck dress with chain, subtle smile."
+      }
+    },
+    {
+      "id": 33,
+      "name": {
+        "eng": "Alia",
+        "ru": "Алия"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Alia.png",
+        "victorian": "/characters/victorian-style/Alia.png"
+      },
+      "description": {
+        "noir": "Short blonde bob, leather headband, mischievous eyes, freckled nose.",
+        "victorian": "Short blonde bob, modest headband, playful eyes, faint freckles, silk gloves."
+      }
+    },
+    {
+      "id": 34,
+      "name": {
+        "eng": "Maeve",
+        "ru": "Мэйв"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Maeve.png",
+        "victorian": "/characters/victorian-style/Maeve.png"
+      },
+      "description": {
+        "noir": "Curled auburn hair, lace collar, sharp jawline, dark eyeshadow.",
+        "victorian": "Auburn curls, lace collar, elaborate earrings, smoky eyes, watchful gaze."
+      }
+    },
+    {
+      "id": 35,
+      "name": {
+        "eng": "Faye",
+        "ru": "Фэй"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Faye.png",
+        "victorian": "/characters/victorian-style/Faye.png"
+      },
+      "description": {
+        "noir": "Wispy silver hair, lace gloves, faint smile, chain necklace.",
+        "victorian": "Silvery curls, delicate gloves, lace brooch, gentle smile, polished appearance."
+      }
+    },
+    {
+      "id": 36,
+      "name": {
+        "eng": "Neve",
+        "ru": "Нев"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Neve.png",
+        "victorian": "/characters/victorian-style/Neve.png"
+      },
+      "description": {
+        "noir": "White hair, dark lipstick, high collar, gentle but wary eyes.",
+        "victorian": "White hair pinned up, dark lipstick, elegant high collar, serene but alert expression."
+      }
+    },
+    {
+      "id": 37,
+      "name": {
+        "eng": "Iris",
+        "ru": "Ирис"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Iris.png",
+        "victorian": "/characters/victorian-style/Iris.png"
+      },
+      "description": {
+        "noir": "Black curls, delicate hat, silver earrings, soft but focused gaze.",
+        "victorian": "Dark, curly hair, petite hat with veil, soft gaze, lace choker, elegant demeanor."
+      }
+    },
+    {
+      "id": 38,
+      "name": {
+        "eng": "Rhea",
+        "ru": "Риа"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Rhea.png",
+        "victorian": "/characters/victorian-style/Rhea.png"
+      },
+      "description": {
+        "noir": "Dark lipstick, elegant high-neck collar, feather earring, sharp glance.",
+        "victorian": "Dark lipstick, high lace collar, single feather earring, sharp but poised glance."
+      }
+    },
+    {
+      "id": 39,
+      "name": {
+        "eng": "Nara",
+        "ru": "Нара"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Nara.png",
+        "victorian": "/characters/victorian-style/Nara.png"
+      },
+      "description": {
+        "noir": "Long silver braid, thick black eyeliner, lace collar, watchful eyes.",
+        "victorian": "Long silver braid, high collar with pendant, intense eyes, dignified look."
+      }
+    },
+    {
+      "id": 40,
+      "name": {
+        "eng": "Cora",
+        "ru": "Кора"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Cora.png",
+        "victorian": "/characters/victorian-style/Cora.png"
+      },
+      "description": {
+        "noir": "Short dark hair, delicate chain earrings, faint smile, smoky eyeshadow.",
+        "victorian": "Neatly styled dark hair, pearl earrings, lace choker, warm but reserved smile."
+      }
+    },
+    {
+      "id": 41,
+      "name": {
+        "eng": "Tyra",
+        "ru": "Тайра"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Tyra.png",
+        "victorian": "/characters/victorian-style/Tyra.png"
+      },
+      "description": {
+        "noir": "Short white curls, lace gloves, brass earrings, intense gaze.",
+        "victorian": "Short white curls, lace gloves, brass drop earrings, piercing gaze."
+      }
+    },
+    {
+      "id": 42,
+      "name": {
+        "eng": "Mira",
+        "ru": "Мира"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Mira.png",
+        "victorian": "/characters/victorian-style/Mira.png"
+      },
+      "description": {
+        "noir": "Wavy dark hair, lace choker, subtle earrings, focused look.",
+        "victorian": "Dark wavy hair, lace collar with brooch, refined features, focused look."
+      }
+    },
+    {
+      "id": 43,
+      "name": {
+        "eng": "Tori",
+        "ru": "Тори"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Tori.png",
+        "victorian": "/characters/victorian-style/Tori.png"
+      },
+      "description": {
+        "noir": "Shaved sides, leather headband, smirk, round silver earring.",
+        "victorian": "Short hair with side part, modest headband, subtle smirk, delicate ear studs."
+      }
+    },
+    {
+      "id": 44,
+      "name": {
+        "eng": "Lyra",
+        "ru": "Лира"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Lyra.png",
+        "victorian": "/characters/victorian-style/Lyra.png"
+      },
+      "description": {
+        "noir": "Long black braid, silver hoop earrings, gentle smile, faint blush.",
+        "victorian": "Long black braid, small hat with satin ribbon, soft smile, faint blush."
+      }
+    },
+    {
+      "id": 45,
+      "name": {
+        "eng": "Lexi",
+        "ru": "Лекси"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Lexi.png",
+        "victorian": "/characters/victorian-style/Lexi.png"
+      },
+      "description": {
+        "noir": "Black bob, high leather collar, subtle eyebrow ring, calm expression.",
+        "victorian": "Short dark bob, lace collar, brass pin at collar, composed expression."
+      }
+    },
+    {
+      "id": 46,
+      "name": {
+        "eng": "Zara",
+        "ru": "Зара"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Zara.png",
+        "victorian": "/characters/victorian-style/Zara.png"
+      },
+      "description": {
+        "noir": "Straight silver hair, metal ear cuff, serious eyes, lace gloves.",
+        "victorian": "Sleek silver hair, intricate lace cuff, serious expression, small hat with chain."
+      }
+    },
+    {
+      "id": 47,
+      "name": {
+        "eng": "Lian",
+        "ru": "Лиан"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Lian.png",
+        "victorian": "/characters/victorian-style/Lian.png"
+      },
+      "description": {
+        "noir": "Curly brown hair, round brass glasses, warm smile, pale skin.",
+        "victorian": "Curly brown hair, wire-rimmed glasses, warm smile, elegant high-neck dress."
+      }
+    },
+    {
+      "id": 48,
+      "name": {
+        "eng": "Elia",
+        "ru": "Элия"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Elia.png",
+        "victorian": "/characters/victorian-style/Elia.png"
+      },
+      "description": {
+        "noir": "Long blonde hair, intricate chain necklace, soft gaze, faint freckles.",
+        "victorian": "Long blonde hair pinned up, lace necklace, gentle look, delicate freckles."
+      }
+    },
+    {
+      "id": 49,
+      "name": {
+        "eng": "Zia",
+        "ru": "Зиа"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Zia.png",
+        "victorian": "/characters/victorian-style/Zia.png"
+      },
+      "description": {
+        "noir": "Wavy brown hair, round earrings, faint smile, soft but intense gaze.",
+        "victorian": "Wavy brown hair, brass drop earrings, soft smile, focused gaze."
+      }
+    },
+    {
+      "id": 50,
+      "name": {
+        "eng": "Nia",
+        "ru": "Ниа"
+      },
+      "photo": {
+        "noir": "/characters/noir-style/Nia.png",
+        "victorian": "/characters/victorian-style/Nia.png"
+      },
+      "description": {
+        "noir": "Short platinum hair, chain earrings, faint blush, piercing green eyes.",
+        "victorian": "Short platinum hair, small pearl earrings, faint blush, bright green eyes."
+      }
+    }
+  ]
+}
