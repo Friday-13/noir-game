@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import CharacterCard from '../character-card/character-card';
 import styles from './game-board.module.scss';
 import TCharacter from '@/types/character';
 const GameBoard = async ({ size }: { size: number }) => {
@@ -17,22 +17,7 @@ const GameBoard = async ({ size }: { size: number }) => {
         }}
       >
         {cards.map((card, index) => (
-          <div
-            className={styles.card}
-            key={index}
-            style={{ transform: `rotate(${Math.random() * 6 - 3}deg)` }}
-          >
-            <Image
-              src={card.photo.noir}
-              alt='char'
-              width={150}
-              height={150}
-              style={{ transform: `rotate(${Math.random() * 6 - 3}deg)` }}
-            />
-            <div className={styles['character-name']}>
-              <p>{card.name.eng}</p>
-            </div>
-          </div>
+          <CharacterCard character={card} key={index} />
         ))}
       </div>
     </div>

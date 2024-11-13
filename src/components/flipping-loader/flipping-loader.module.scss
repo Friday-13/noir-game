@@ -1,0 +1,21 @@
+.loader {
+  width: fit-content;
+  font-size: 40px;
+  font-family: var(--roboto-font), sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0000;
+  -webkit-text-stroke: 1px #000;
+  background: conic-gradient(#000 0 0) 50% / 0 100% no-repeat text;
+  animation: l4 1.5s linear infinite;
+}
+
+.loader::before {
+  content: '???';
+}
+
+@keyframes l4 {
+  to {
+    background-size: 120% 100%;
+  }
+}
