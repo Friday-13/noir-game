@@ -18,6 +18,7 @@ const CharacterCard = ({
   const [isActive, setIsActive] = useState<boolean>(false);
   const [imageRotation, setImageRotation] = useState<number>(0);
   const [cardRotation, setCardRotation] = useState<number>(0);
+  const [isAlive, setIsAlive] = useState<boolean>(true);
 
   const getStyle = () => {
     if (isActive) {
@@ -73,6 +74,7 @@ const CharacterCard = ({
           <div className={styles['character-name']}>
             <p>{character.name.eng}</p>
           </div>
+          {isAlive ? <></> : <div className={styles.card_crossed} />}
         </Suspense>
       </div>
       {isActive ? (
@@ -82,7 +84,9 @@ const CharacterCard = ({
             left: position.left * 220 - 60,
           }}
           hideControls={() => setIsActive(false)}
-          catchSpy={() => {}}
+          catchSpy={() => {
+            setIsAlive(false);
+          }}
           interrogate={() => {}}
         />
       ) : (
