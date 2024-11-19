@@ -4,7 +4,6 @@ import TCharacter from '@/types/character';
 import styles from './card-zone.module.scss';
 import CharacterCard from '@/components/character-card/character-card';
 import { useState } from 'react';
-import CardControls from '../card-controls/card-controls';
 
 const cardGrid = (cards: Array<Array<TCharacter>>) => {
   return cards.map((row, i) =>
@@ -30,21 +29,6 @@ const CardZone = ({
   size: number;
 }) => {
   const [cards] = useState(cardGrid(startCards));
-  const [controlsShown, setControlsShown] = useState(false);
-  const [controlsPosition, setControlsPosition] = useState<TCardPosition>({
-    top: 0,
-    left: 0,
-  });
-
-  const showControls = (position: TCardPosition) => {
-    setControlsShown(true);
-    const newControlsPosition: TCardPosition = {
-      top: position.top - 60,
-      left: position.left - 60,
-    };
-    console.log(newControlsPosition);
-    setControlsPosition(newControlsPosition);
-  };
 
   return (
     <div
@@ -60,12 +44,10 @@ const CardZone = ({
               character={card.character}
               position={card.position}
               key={card.key}
-              showControls={showControls}
             />
           );
         }),
       )}
-      {controlsShown ? <CardControls position={controlsPosition} /> : <></>}
     </div>
   );
 };

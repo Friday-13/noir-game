@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 48 48"
+   id="Layer_2"
+   data-name="Layer 2"
+   version="1.1"
+   sodipodi:docname="interrogate.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showguides="true"
+     inkscape:zoom="0.59"
+     inkscape:cx="98.305085"
+     inkscape:cy="650.84746"
+     inkscape:window-width="1920"
+     inkscape:window-height="1132"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_2" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+    <style
+       id="style1">.cls-1{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}</style>
+  </defs>
+  <path
+     class="cls-1"
+     d="m 13.57119,12.914936 c 5.375946,-5.3683788 14.084054,-5.3683788 19.46,0 v 0 c 5.077089,5.07836 5.399224,13.205733 0.74,18.67 l 0.52,0.51 h 1.74 l 6.968799,6.968799 0,3.936254 -2.633746,0 -7.615053,-7.615053 v -1.73 l -0.52,-0.52 C 26.60365,37.896578 18.224316,37.381677 13.222105,31.966857 8.2198938,26.552037 8.3693605,18.158229 13.56119,12.924936 Z m 3.05,3.06 c -5.949679,5.954742 -1.73168,16.128838 6.685,16.128838 8.41668,0 12.634679,-10.174096 6.685,-16.128838 -3.69339,-3.688723 -9.67661,-3.688723 -13.37,0 z"
+     id="path1"
+     style="stroke-width:1.00002;stroke-dasharray:none"
+     sodipodi:nodetypes="csscccccccccscccscc" />
+  <line
+     class="cls-1"
+     x1="33.781189"
+     y1="31.594934"
+     x2="32.23119"
+     y2="33.134937"
+     id="line1" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.00002;stroke-dasharray:none;stroke-opacity:1"
+     d="m 14.28445,17.113249 c 0,-1.310427 0,-2.620854 1.268482,-3.276067 1.268481,-0.655213 3.805342,-0.655213 5.073798,0.311335 1.268456,0.966548 1.268456,2.899566 0.544106,3.866094 -0.724349,0.966529 -2.17299,0.966529 -2.897325,1.654759 -0.724335,0.688231 -0.724335,2.064636 -0.724335,3.441069"
+     id="path2"
+     inkscape:path-effect="#path-effect2"
+     inkscape:original-d="m 14.28445,17.113249 c 0,-1.310427 0,-2.620854 0,-3.93128 2.536963,0 5.073824,0 7.610736,0 0,1.933096 0,3.866114 0,5.799171 -1.448699,0 -2.89734,0 -4.34601,0 0,1.376461 0,2.752866 0,4.129299"
+     sodipodi:nodetypes="cccccc"
+     transform="translate(5.4875787,2.7193462)" />
+  <circle
+     style="fill:none;stroke:#000000;stroke-width:1.00002;stroke-dasharray:none;stroke-opacity:1"
+     id="path3"
+     cx="22.999981"
+     cy="27.384935"
+     r="0.50001001" />
+</svg>
