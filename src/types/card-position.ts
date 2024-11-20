@@ -1,6 +1,9 @@
-type TCardPosition = {
+export type TCardPosition = {
   top: number;
   left: number;
 };
 
-export default TCardPosition;
+export type TCardPositionPixels = {
+  topPx: number;
+  leftPx: number;
+};

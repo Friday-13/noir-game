@@ -1,9 +1,10 @@
 'use client';
-import TCardPosition from '@/types/card-position';
+import { TCardPosition } from '@/types/card-position';
 import TCharacter from '@/types/character';
 import styles from './card-zone.module.scss';
 import CharacterCard from '@/components/character-card/character-card';
 import { useState } from 'react';
+import TMoveDirection from '@/types/move-direction';
 
 const cardGrid = (cards: Array<Array<TCharacter>>) => {
   return cards.map((row, i) =>
@@ -28,14 +29,38 @@ const CardZone = ({
   size: number;
 }) => {
   const [cards, setCards] = useState(cardGrid(startCards));
-  const moveCards = () => {
+  const moveCards = (
+    direction: TMoveDirection,
+    currentPosition: TCardPosition,
+  ) => {
+    let step = 0;
+    if (direction === 'left' || direction === 'up') {
+      step = -1;
+    } else {
+      step = 1;
+    }
+
     const newCards = cards.map((row) =>
       row.map((card) => {
-        if (card.position.top === 1) {
-          if (card.position.left === 0) {
-            card.position.left = size - 1;
-          } else {
-            card.position.left -= 1;
+        if (direction === 'left' || direction === 'right') {
+          if (card.position.top === currentPosition.top) {
+            card.position.left += step;
+            if (card.position.left < 0) {
+              card.position.left = size - 1;
+            }
+            if (card.position.left >= size) {
+              card.position.left = 0;
+            }
+          }
+        } else {
+          if (card.position.left === currentPosition.left) {
+            card.position.top += step;
+            if (card.position.top < 0) {
+              card.position.top = size - 1;
+            }
+            if (card.position.top >= size) {
+              card.position.top = 0;
+            }
           }
         }
         return card;
@@ -58,7 +83,7 @@ const CardZone = ({
         // const newCards = [...cards];
         // console.log(cards[0][0].position);
         // setCards(newCards);
-        moveCards();
+        // moveCards();
       }}
     >
       {cards.map((row) =>
@@ -68,6 +93,7 @@ const CardZone = ({
               character={card.character}
               position={card.position}
               key={card.character.id}
+              moveCallback={moveCards}
             />
           );
         }),

@@ -4,42 +4,49 @@ import Image from 'next/image';
 import styles from './character-card.module.scss';
 import { Suspense, useEffect, useState } from 'react';
 import FlippingLoader from '../flipping-loader/flipping-loader';
-import TCardPosition from '@/types/card-position';
+import { TCardPosition } from '@/types/card-position';
 import CardControls from '../game-board/card-controls/card-controls';
+import TMoveDirection from '@/types/move-direction';
+import positionToPixels from '@/utils/position-to-pixels';
 
 const CharacterCard = ({
   character,
   position,
+  moveCallback,
 }: {
   character: TCharacter;
   position: TCardPosition;
+  moveCallback: (
+    direction: TMoveDirection,
+    currentPosition: TCardPosition,
+  ) => void;
 }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [imageRotation, setImageRotation] = useState<number>(0);
   const [cardRotation, setCardRotation] = useState<number>(0);
   const [isAlive, setIsAlive] = useState<boolean>(true);
-
+  const positionPx = positionToPixels(position, 220, 280);
   const getStyle = () => {
     if (isActive) {
       return {
         transform: `scale(1.1)`,
-        top: `${position.top * 280}px`,
-        left: `${position.left * 220}px`,
+        top: `${positionPx.topPx}px`,
+        left: `${positionPx.leftPx}px`,
         zIndex: 2,
       };
     }
     if (isHover) {
       return {
         transform: `scale(1.1)`,
-        top: `${position.top * 280}px`,
-        left: `${position.left * 220}px`,
+        top: `${positionPx.topPx}px`,
+        left: `${positionPx.leftPx}px`,
       };
     }
     return {
       transform: `rotate(${cardRotation}deg)`,
-      top: `${position.top * 280}px`,
-      left: `${position.left * 220}px`,
+      top: `${positionPx.topPx}px`,
+      left: `${positionPx.leftPx}px`,
     };
   };
 
@@ -79,15 +86,13 @@ const CharacterCard = ({
       </div>
       {isActive ? (
         <CardControls
-          position={{
-            top: position.top * 280 - 60,
-            left: position.left * 220 - 60,
-          }}
+          position={position}
           hideControls={() => setIsActive(false)}
           catchSpy={() => {
             setIsAlive(false);
           }}
           interrogate={() => {}}
+          moveCards={moveCallback}
         />
       ) : (
         <></>
