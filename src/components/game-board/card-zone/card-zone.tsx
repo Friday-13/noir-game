@@ -15,7 +15,6 @@ const cardGrid = (cards: Array<Array<TCharacter>>) => {
       return {
         character: card,
         position,
-        key: `${i}-${j}`,
       };
     }),
   );
@@ -28,13 +27,38 @@ const CardZone = ({
   startCards: Array<Array<TCharacter>>;
   size: number;
 }) => {
-  const [cards] = useState(cardGrid(startCards));
+  const [cards, setCards] = useState(cardGrid(startCards));
+  const moveCards = () => {
+    const newCards = cards.map((row) =>
+      row.map((card) => {
+        if (card.position.top === 1) {
+          if (card.position.left === 0) {
+            card.position.left = size - 1;
+          } else {
+            card.position.left -= 1;
+          }
+        }
+        return card;
+      }),
+    );
+    setCards(newCards);
+  };
 
   return (
     <div
       className={styles['card-zone']}
       style={{
         height: `${280 * size}px`,
+      }}
+      onClick={() => {
+        // [cards[0][0].position, cards[2][2].position] = [
+        //   cards[2][2].position,
+        //   cards[0][0].position,
+        // ];
+        // const newCards = [...cards];
+        // console.log(cards[0][0].position);
+        // setCards(newCards);
+        moveCards();
       }}
     >
       {cards.map((row) =>
@@ -43,7 +67,7 @@ const CardZone = ({
             <CharacterCard
               character={card.character}
               position={card.position}
-              key={card.key}
+              key={card.character.id}
             />
           );
         }),

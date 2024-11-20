@@ -1,5 +1,5 @@
 import GameBoard from '@/components/game-board/game-board';
 
 export default function Home() {
-  return <GameBoard size={3} />;
+  return <GameBoard size={6} />;
 }
