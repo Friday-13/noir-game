@@ -14,8 +14,8 @@ const initialState: IActiveCharacter = {
       eng: '???',
     },
     photo: {
-      noir: './characters/noir/default.png',
-      victorian: './characters/victorian/default.png',
+      noir: '/characters/noir-style/default.png',
+      victorian: '/characters/victorian-style/default.png',
     },
     description: {
       noir: '',
