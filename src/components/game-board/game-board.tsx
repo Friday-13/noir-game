@@ -13,7 +13,7 @@ const GameBoard = async ({ size }: { size: number }) => {
   );
   return (
     <div className={styles.gameboard}>
-      <StoreProvider count={10}>
+      <StoreProvider activeCharacter={cards[0][0]}>
         <CardZone startCards={cards} size={size} />
       </StoreProvider>
     </div>

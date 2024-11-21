@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { counterSlice } from './slices/counter-slice';
+import { activeCharacterSlice } from './slices/active-character-slice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      counter: counterSlice.reducer,
+      activeCharacter: activeCharacterSlice.reducer,
     },
   });
 };

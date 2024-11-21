@@ -7,8 +7,7 @@ import { useState } from 'react';
 import TMoveDirection from '@/types/move-direction';
 import { TCard } from '@/types/card';
 import moveCards from './move-cards';
-import { useAppDispatch, useAppSelector } from '@/utils/store/hooks';
-import { increment } from '@/utils/store/slices/counter-slice';
+import { useAppSelector } from '@/utils/store/hooks';
 
 const cardGrid = (cards: TCharacter[][]): TCard[][] => {
   return cards.map((row, i) =>
@@ -33,8 +32,10 @@ const CardZone = ({
   size: number;
 }) => {
   const [cards, setCards] = useState(cardGrid(startCards));
-  const count = useAppSelector((state) => state.counter.value);
-  const dispatch = useAppDispatch();
+  const activeCharacter = useAppSelector(
+    (state) => state.activeCharacter.value,
+  );
+  // const dispatch = useAppDispatch();
   const handleMove = (
     direction: TMoveDirection,
     currentPosition: TCardPosition,
@@ -50,8 +51,7 @@ const CardZone = ({
         height: `${280 * size}px`,
       }}
       onClick={() => {
-        console.log(count);
-        dispatch(increment());
+        console.log(activeCharacter.name.eng);
       }}
     >
       {cards.map((row) =>
