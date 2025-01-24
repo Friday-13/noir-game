@@ -26,6 +26,10 @@ build-backend = "poetry.core.masonry.api"
 pylint = "^3.3.3"
 isort = "^5.13.2"
 black = "^24.10.0"
+pytest = "^8.3.4"
+httpx = "^0.28.1"
+pytest-asyncio = "^0.25.2"
+pytest-cov = "^6.0.0"
 
 [tool.black]
 line-length = 88
