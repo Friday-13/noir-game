@@ -9,43 +9,39 @@ from server.utils.api import (
     validate_user_uniqueness,
 )
 
-
-def get_test_user() -> UserRegisterScheme:
+@pytest.fixture
+def test_user() -> UserRegisterScheme:
     name = "username"
     email = "user@example.com"
     password = "testpassword"
     return UserRegisterScheme(name=name, email=email, password=password)
 
 
-def test_validate_user_uniquess():
-    user = get_test_user()
+def test_validate_user_uniquess(test_user):
     user_in_db = None
     try:
-        validate_user_uniqueness(user, user_in_db)
+        validate_user_uniqueness(test_user, user_in_db)
     except:
         pytest.fail("Unexpected Exception raised!")
 
 
-def test_validate_user_with_existing_email():
-    user = get_test_user()
-    user_in_db = UserModel(name=user.name, email="", pass_hash="")
+def test_validate_user_with_existing_email(test_user):
+    user_in_db = UserModel(name=test_user.name, email="", pass_hash="")
     with pytest.raises(HTTPException) as excinfo:
-        validate_user_uniqueness(user, user_in_db)
+        validate_user_uniqueness(test_user, user_in_db)
     assert excinfo.value.status_code == 401
 
 
-def test_validate_user_with_existing_username():
-    user = get_test_user()
+def test_validate_user_with_existing_username(test_user):
     user_in_db = UserModel(name="", email="user@example.com", pass_hash="")
     with pytest.raises(HTTPException) as excinfo:
-        validate_user_uniqueness(user, user_in_db)
+        validate_user_uniqueness(test_user, user_in_db)
     assert excinfo.value.status_code == 401
 
 
-def test_validate_user_existance():
-    user = UserModel(name="", email="", pass_hash="")
+def test_validate_user_existance(test_user):
     try:
-        validate_user_existance(user)
+        validate_user_existance(test_user)
     except:
         pytest.fail("Unexpected Exception raised!")
 
