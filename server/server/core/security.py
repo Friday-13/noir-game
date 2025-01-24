@@ -2,6 +2,7 @@ import os
 
 from authx import AuthX, AuthXConfig
 from dotenv import load_dotenv
+from fastapi.security import APIKeyHeader
 
 load_dotenv()
 
@@ -20,3 +21,4 @@ config = AuthXConfig(
 )
 
 auth = AuthX(config=config)
+header_scheme = APIKeyHeader(name=config.JWT_ACCESS_CSRF_HEADER_NAME)

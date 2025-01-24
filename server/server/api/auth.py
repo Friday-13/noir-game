@@ -1,9 +1,10 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Body, HTTPException, Response
+from fastapi import APIRouter, Body, Depends, HTTPException, Response
+from passlib.hash import bcrypt
 from sqlalchemy import select
 
-from server.core.security import auth
+from server.core.security import auth, header_scheme
 from server.db.models import UserModel
 from server.db.session import SessionDep
 from server.schemas.auth import UserLoginScheme, UserRegisterScheme
@@ -27,8 +28,8 @@ async def register(
             raise HTTPException(401, {"message": "User with this email exists"})
         if existed_user.name == user.name:
             raise HTTPException(401, {"message": "User with this username exists"})
-    # TODO: add password hashing
-    new_user = UserModel(name=user.name, email=user.email, pass_hash=user.password)
+    pass_hash = bcrypt.hash(user.password)
+    new_user = UserModel(name=user.name, email=user.email, pass_hash=pass_hash)
     session.add(new_user)
     await session.flush()
     token = auth.create_access_token(uid=str(new_user.id))
@@ -50,12 +51,23 @@ async def login(
     user_in_db = data.scalar_one_or_none()
     if not user_in_db:
         raise HTTPException(
-            401, detail={"message": "User with the provided username does not exist."}
+            401,
+            detail={
+                "message": "User with the provided username or email does not exist."
+            },
         )
-    # TODO: add passwod hashing
-    if user_in_db.pass_hash != user.password:
+    if not bcrypt.verify(user.password, user_in_db.pass_hash):
         raise HTTPException(401, detail={"message": "Invalid credentials"})
 
     token = auth.create_access_token(uid=str(user_in_db.id))
     auth.set_access_cookies(response=response, token=token)
     return {"access_token": token}
+
+
+@auth_router.get(
+    "/protected",
+    dependencies=[Depends(auth.access_token_required), Depends(header_scheme)],
+)
+def protected():
+    print("access granted")
+    return {"access": True}
