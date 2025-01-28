@@ -2,20 +2,11 @@ from fastapi import HTTPException
 from passlib.hash import bcrypt
 import pytest
 from server.db.models import UserModel
-from server.schemas.auth import UserRegisterScheme
 from server.utils.api import (
     validate_password,
     validate_user_existance,
     validate_user_uniqueness,
 )
-
-@pytest.fixture
-def test_user() -> UserRegisterScheme:
-    name = "username"
-    email = "user@example.com"
-    password = "testpassword"
-    return UserRegisterScheme(name=name, email=email, password=password)
-
 
 def test_validate_user_uniquess(test_user):
     user_in_db = None
