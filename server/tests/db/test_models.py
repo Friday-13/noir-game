@@ -1,32 +1,8 @@
 import pytest
-from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
-from server.db.models import UserModel, UserRepository
-from server.db.session import Base
+from server.db.models import UserRepository
 from passlib.hash import bcrypt
 
 from server.schemas.auth import UserRegisterScheme
-
-
-TEST_DB_URL = "sqlite+aiosqlite:///:memory:"
-
-test_engine = create_async_engine(TEST_DB_URL, echo=True)
-session_maker = async_sessionmaker(test_engine, expire_on_commit=False)
-
-
-@pytest.fixture(autouse=True, scope="module")
-async def create_tables():
-    async with test_engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-        print("Database cleared successfully.")
-        await conn.run_sync(Base.metadata.create_all)
-        print("Database created successfully.")
-
-
-@pytest.fixture(autouse=True, scope="module")
-async def test_session():
-    async with session_maker() as session:
-        yield session
-
 
 @pytest.mark.asyncio
 async def test_create_user(test_session, test_user: UserRegisterScheme):

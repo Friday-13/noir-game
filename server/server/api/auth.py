@@ -35,7 +35,7 @@ async def register(
 
 @auth_router.post("/login")
 async def login(
-    user: Annotated[UserLoginScheme, Body(embed=True)],
+    user: Annotated[UserLoginScheme, Body(embed=False)],
     session: SessionDep,
     response: Response,
 ):
