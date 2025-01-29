@@ -1,0 +1,5 @@
+cd server
+poetry run black server/*
+poetry run isort server/*
+poetry run pylint server/*
+cd ..

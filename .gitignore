@@ -1,33 +1,63 @@
+# IDE and editor directories and files
 .idea
-.ipynb_checkpoints
-.mypy_cache
 .vscode
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Python-specific
+.mypy_cache
 __pycache__
 .pytest_cache
 htmlcov
-dist
-site
 .coverage*
 coverage.xml
-.netlify
-test.db
-log.txt
-Pipfile.lock
 env3.*
 env
+.env
 docs_build
 site_build
 venv
+Pipfile.lock
+
+# JavaScript and Node.js
+node_modules
+dist
+dist-ssr
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build and output directories
+site
 docs.zip
 archive.zip
 
-# vim temporary files
+# Temporary and cache files
+.cache
 *~
 .*.sw?
-.cache
+test.db
+*.db
+log.txt
 
 # macOS
 .DS_Store
 
-#database
-*.db
+# Other specific files
+.netlify
+

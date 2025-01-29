@@ -9,10 +9,32 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard] (>=0.115.6,<0.116.0)",
-    "websockets (>=14.2,<15.0)"
+    "websockets (>=14.2,<15.0)",
+    "authx (>=1.4.1,<2.0.0)",
+    "python-dotenv (>=1.0.1,<2.0.0)",
+    "sqlalchemy (>=2.0.37,<3.0.0)",
+    "aiosqlite (>=0.20.0,<0.21.0)",
+    "passlib[bcrypt] (>=1.7.4,<2.0.0)",
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.3.3"
+isort = "^5.13.2"
+black = "^24.10.0"
+pytest = "^8.3.4"
+httpx = "^0.28.1"
+pytest-asyncio = "^0.25.2"
+pytest-cov = "^6.0.0"
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+
