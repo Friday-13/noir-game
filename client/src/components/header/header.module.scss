@@ -1,0 +1,76 @@
+@use "@styles/variables.module" as *;
+
+.header-container {
+  position: absolute;
+  width: 100%;
+  background-image: url("light-background.jpg");
+}
+
+.header {
+  box-shadow: 0 4px 6px 0 rgb(0 0 0 / 20%);
+  padding: 0 60px;
+  position: relative;
+  padding-bottom: 12px;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+  }
+
+  &__auth-container {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__auth-item {
+    font-size: 32px;
+    font-family: $font-heading;
+    list-style: none;
+  }
+
+  &__menu-container {
+    width: 100%;
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 16px;
+  }
+
+  &__menu-item {
+    list-style: none;
+    cursor: pointer;
+    font-family: $font-heading;
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    height: 4px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    width: calc(100% - 120px);
+    background: #000;
+    border-radius: 2px;
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    width: calc(100% - 120px);
+    background: #000;
+    border-radius: 1px;
+  }
+}

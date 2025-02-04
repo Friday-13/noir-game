@@ -25,13 +25,15 @@
       {
         "name": "typescript-plugin-css-modules",
         "options": {
-          "customMatcher": "\\.module\\.(sa|sc|c)ss$"
+          "customMatcher": "\\.module\\.(sa|sc|c)ss$",
+          "classnameTransform": "camelCaseOnly"
         }
       }
     ],
     "paths": {
       "@/*": ["./src/*"],
       "@utils/*": ["./src/utils/*"],
+      "@styles/*": ["./src/styles/*"],
       "@components/*": ["./src/components/*"]
     },
 
