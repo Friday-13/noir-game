@@ -73,4 +73,19 @@
     background: #000;
     border-radius: 1px;
   }
+
+  &__show-btn {
+    position: absolute;
+    width: 60px;
+    height: 36px;
+    right: 60px;
+    bottom: 16px;
+    cursor: pointer;
+    transition: transform .5s;
+
+    &:hover {
+      transform: scale(1.05);
+      transition: transform .5s;
+    }
+  }
 }

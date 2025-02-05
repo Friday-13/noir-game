@@ -1,5 +1,8 @@
 import { useState } from "react";
 import styles from "./header.module.scss";
+import FrameBox from "../frame-box/frame-box";
+import { CaretUp } from "phosphor-react-native";
+import Icon from "../icon/icon";
 
 function Header() {
   const [isActive, setIsActive] = useState(false);
@@ -23,6 +26,13 @@ function Header() {
             <li className={styles.headerMenuItem}>Start New Game</li>
           </ul>
         </nav>
+        <FrameBox className={styles.headerShowBtn}>
+          <Icon
+            src="/src/assets/icons/caret-up.svg"
+            alt="fold-menu"
+            size={32}
+          />
+        </FrameBox>
       </header>
     </div>
   );
