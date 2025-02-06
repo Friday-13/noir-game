@@ -4,13 +4,23 @@
   position: absolute;
   width: 100%;
   background-image: url("light-background.jpg");
+    transition: transform .5s;
+  transform: translateY(-100%);
+
+  &_show {
+    transform: translateY(0);
+  }
 }
 
+
 .header {
-  box-shadow: 0 4px 6px 0 rgb(0 0 0 / 20%);
   padding: 0 60px;
   position: relative;
   padding-bottom: 12px;
+
+  &_is-collabsible {
+    box-shadow: 0 4px 6px 0 rgb(0 0 0 / 20%);
+  }
 
   &__content {
     display: flex;
@@ -82,9 +92,14 @@
     bottom: 16px;
     cursor: pointer;
     transition: transform .5s;
+    transform: translateY(calc(100% + 36px));
+
+    &_hide-menu {
+        transform: translateY(calc(-100% + 36px));
+    }
 
     &:hover {
-      transform: scale(1.05);
+      /* transform: scale(1.05); */
       transition: transform .5s;
     }
   }

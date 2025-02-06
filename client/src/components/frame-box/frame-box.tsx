@@ -1,9 +1,11 @@
 import { HTMLAttributes } from "react";
 import styles from "./frame-box.module.scss";
-function FrameBox(props: HTMLAttributes<HTMLDivElement>) {
+import clsx from "clsx";
+function FrameBox({ className, ...restProps }: HTMLAttributes<HTMLDivElement>) {
+  const boxStyle = clsx(styles.frameBox, className);
   return (
-    <div className={[styles.frameBox, props.className].join(" ")}>
-      {props.children}
+    <div className={boxStyle} {...restProps}>
+      {restProps.children}
     </div>
   );
 }

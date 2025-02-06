@@ -4,7 +4,7 @@ import Header from "@components/header/header";
 function App() {
   return (
     <>
-      <Header />
+      <Header isCollapsible={true}/>
       <main></main>
     </>
   );

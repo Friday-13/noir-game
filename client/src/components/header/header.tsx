@@ -1,15 +1,25 @@
 import { useState } from "react";
 import styles from "./header.module.scss";
-import FrameBox from "../frame-box/frame-box";
-import { CaretUp } from "phosphor-react-native";
-import Icon from "../icon/icon";
+import clsx from "clsx";
+import HeaderButton from "./header-button";
 
-function Header() {
-  const [isActive, setIsActive] = useState(false);
-  const [isCollapsible, setIsCollapsible] = useState(false);
+interface IHeaderProps {
+  isCollapsible: boolean;
+}
+function Header(props: IHeaderProps) {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const headerContainerStyle = clsx(
+    styles.headerContainer,
+    isVisible && styles.headerContainerShow
+  );
+  const headerStyle = clsx(
+    styles.header,
+    props.isCollapsible && styles.headerIsCollabsible
+  );
+
   return (
-    <div className={styles.headerContainer}>
-      <header className={styles.header}>
+    <div className={headerContainerStyle}>
+      <header className={headerStyle}>
         <div className={styles.headerContent}>
           <div>
             <img src="logo.png" alt="logo" />
@@ -19,20 +29,21 @@ function Header() {
             <li className={styles.headerAuthItem}>Logout</li>
           </ul>
         </div>
-        <nav className={styles.headerMenuContainer}>
-          <ul className={styles.headerMenu}>
-            <li className={styles.headerMenuItem}>Available games</li>
-            <li className={styles.headerMenuItem}>Menu</li>
-            <li className={styles.headerMenuItem}>Start New Game</li>
-          </ul>
-        </nav>
-        <FrameBox className={styles.headerShowBtn}>
-          <Icon
-            src="/src/assets/icons/caret-up.svg"
-            alt="fold-menu"
-            size={32}
+        {props.isCollapsible && (
+          <nav className={styles.headerMenuContainer}>
+            <ul className={styles.headerMenu}>
+              <li className={styles.headerMenuItem}>Available games</li>
+              <li className={styles.headerMenuItem}>Menu</li>
+              <li className={styles.headerMenuItem}>Start New Game</li>
+            </ul>
+          </nav>
+        )}
+        {props.isCollapsible && (
+          <HeaderButton
+            action={isVisible ? "hide" : "show"}
+            onClick={() => setIsVisible(!isVisible)}
           />
-        </FrameBox>
+        )}
       </header>
     </div>
   );
