@@ -6,19 +6,18 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <main>
-        <Header isCollapsible={false} />
-        <h2>main page</h2>
+      <>
+        <Header />
         <Outlet />
-      </main>
+      </>
     ),
     // errorElement: <ErrorPage />,
     // loader: rootLoader,
     // action: rootAction,
     children: [
       {
-        path: "contacts/:contactId",
-        // element: <Contact />,
+        path: "",
+        element: <h2>Main page</h2>,
       },
       {
         path: "login",
@@ -26,7 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: <h2>register Page</h2>,
+        element: <h2>Register Page</h2>,
+      },
+      {
+        path: "game",
+        element: <h2>Game Page</h2>,
       },
     ],
   },

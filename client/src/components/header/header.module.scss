@@ -1,17 +1,19 @@
 @use "@styles/variables.module" as *;
 
 .header-container {
-  position: absolute;
   width: 100%;
   background-image: url("light-background.jpg");
-    transition: transform .5s;
+  transition: transform 0.5s;
   transform: translateY(-100%);
 
   &_show {
     transform: translateY(0);
   }
-}
 
+  &_collapsible {
+    position: absolute;
+  }
+}
 
 .header {
   padding: 0 60px;
@@ -91,16 +93,16 @@
     right: 60px;
     bottom: 16px;
     cursor: pointer;
-    transition: transform .5s;
+    transition: transform 0.5s;
     transform: translateY(calc(100% + 36px));
 
     &_hide-menu {
-        transform: translateY(calc(-100% + 36px));
+      transform: translateY(calc(-100% + 36px));
     }
 
     &:hover {
       /* transform: scale(1.05); */
-      transition: transform .5s;
+      transition: transform 0.5s;
     }
   }
 }
