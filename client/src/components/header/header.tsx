@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "./header.module.scss";
 import clsx from "clsx";
 import HeaderButton from "./header-button";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { increment } from "@/store/counter-slice";
 
 interface IHeaderProps {
   isCollapsible: boolean;
@@ -17,6 +19,9 @@ function Header(props: IHeaderProps) {
     props.isCollapsible && styles.headerIsCollabsible
   );
 
+  const dispatch = useAppDispatch();
+  const counter = useAppSelector((state) => state.counter.value);
+
   return (
     <div className={headerContainerStyle}>
       <header className={headerStyle}>
@@ -26,7 +31,8 @@ function Header(props: IHeaderProps) {
           </div>
           <h1>The Noir Game</h1>
           <ul className={styles.headerAuthContainer}>
-            <li className={styles.headerAuthItem}>Logout</li>
+            <li className={styles.headerAuthItem}>Login</li>
+            <li className={styles.headerAuthItem}>Register</li>
           </ul>
         </div>
         {props.isCollapsible && (
@@ -41,7 +47,11 @@ function Header(props: IHeaderProps) {
         {props.isCollapsible && (
           <HeaderButton
             action={isVisible ? "hide" : "show"}
-            onClick={() => setIsVisible(!isVisible)}
+            onClick={() => {
+              setIsVisible(!isVisible);
+              dispatch(increment());
+              console.log(counter);
+            }}
           />
         )}
       </header>

@@ -10,5 +10,9 @@
   },
   "scripts": {
     "prepare": "husky"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.5.1",
+    "react-redux": "^9.2.0"
   }
 }
