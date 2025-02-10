@@ -9,38 +9,46 @@ export default class ServerApi {
       email_or_name: nameOrEmail,
       password: password,
     };
-    try {
-      const response = await fetch(`${BASE_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(loginData),
-      });
-      if (!response.ok) throw new Error("Form error");
-    } catch (error) {
-      console.error(error);
-    }
+    const response = await fetch(`${BASE_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(loginData),
+    });
+    return response;
+  }
+
+  static async register(name: string, email: string, password: string) {
+    const registerData = {
+      name: name,
+      email: email,
+      password: password,
+    };
+    const response = await fetch(`${BASE_URL}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(registerData),
+    });
+    return response;
   }
 
   static async getProtected() {
-    try {
-      const response = await fetch(`${BASE_URL}/protected`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "x-csrf-token": this.getCsrfToken(),
-          accept: "application/json",
-        },
-      });
-      if (!response.ok) throw new Error("Form error");
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
+    const response = await fetch(`${BASE_URL}/protected`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "x-csrf-token": this.getCsrfToken(),
+        accept: "application/json",
+      },
+    });
+    return response;
   }
 
   static getCsrfToken() {

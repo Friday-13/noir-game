@@ -1,17 +1,20 @@
 import ServerApi from "@/utils/server-api";
 import Form from "@components/form/form";
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
-function Login() {
-  const [nameOrEmail, setNameOrEmail] = useState<string>("user@example.com");
+function Register() {
+  const [name, setName] = useState<string>("username");
+  const [email, setEmail] = useState<string>("user@example.com");
   const [password, setPassword] = useState<string>("string");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const response = await ServerApi.login(nameOrEmail, password);
+    console.log(name);
+    console.log(password);
+    const response = await ServerApi.register(name, email, password);
     if (!response.ok) {
       const content = await response.json();
       const message = content?.detail?.message;
@@ -27,11 +30,16 @@ function Login() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Login</h2>
+      <h2>Register</h2>
       <input
         type="text"
-        value={nameOrEmail}
-        onChange={(e) => setNameOrEmail(e.target.value)}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        type="text"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
@@ -39,9 +47,9 @@ function Login() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <input type="submit" />
-      <span>{errorMessage}</span>
+      {errorMessage && <span>{errorMessage}</span>}
     </Form>
   );
 }
 
-export default Login;
+export default Register;

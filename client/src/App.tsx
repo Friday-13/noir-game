@@ -2,6 +2,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Header from "@components/header/header";
 import Login from "./components/pages/login";
+import Register from "./components/pages/register";
 
 const router = createBrowserRouter([
   {
@@ -22,11 +23,11 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <Login />
+        element: <Login />,
       },
       {
         path: "register",
-        element: <h2>Register Page</h2>,
+        element: <Register />,
       },
       {
         path: "game",
