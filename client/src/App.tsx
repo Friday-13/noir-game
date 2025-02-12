@@ -3,6 +3,13 @@ import "./App.css";
 import Header from "@components/header/header";
 import Login from "./components/pages/login";
 import Register from "./components/pages/register";
+import { useEffect } from "react";
+import { ApiProvider } from "@reduxjs/toolkit/query/react";
+import ServerApi from "./utils/server-api";
+import { useAppDispatch } from "./store/hooks";
+import isAuth from "./utils/is-auth";
+import { login } from "./store/auth-slice";
+import useInitAuthState from "./utils/is-auth";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +45,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  useInitAuthState();
   return (
     <>
       <RouterProvider router={router} />

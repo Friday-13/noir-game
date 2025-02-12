@@ -1,3 +1,6 @@
+import { login } from "@/store/auth-slice";
+import { useAppDispatch } from "@/store/hooks";
+import { saveNameOrEmail } from "@/utils/manage-nickname";
 import ServerApi from "@/utils/server-api";
 import Form from "@components/form/form";
 import { FormEvent, useState } from "react";
@@ -9,6 +12,7 @@ function Register() {
   const [password, setPassword] = useState<string>("string");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -25,6 +29,10 @@ function Register() {
       }
       return;
     }
+    dispatch(
+      login({ nameOrEmail: name, token: ServerApi.getCsrfToken() })
+    );
+    saveNameOrEmail(name);
     navigate("/");
   };
 

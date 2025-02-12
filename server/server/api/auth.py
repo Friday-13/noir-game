@@ -55,3 +55,10 @@ async def login(
 def protected():
     print("access granted")
     return {"access": True}
+
+@auth_router.get(
+    "/is-auth",
+    dependencies=[Depends(auth.access_token_required), Depends(header_scheme)],
+)
+def check_auth():
+    return {"isAuth": True}
