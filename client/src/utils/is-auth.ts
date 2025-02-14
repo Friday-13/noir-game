@@ -1,20 +1,19 @@
 import ServerApi from "./server-api";
-import { getNameOrEmail } from "./manage-nickname";
 import { useAppDispatch } from "@/store/hooks";
 import { useEffect } from "react";
 import { AppDispatch } from "@/store/store";
-import { login, logout } from "@/store/auth-slice";
+import { ICredentials, login, logout } from "@/store/auth-slice";
 
 async function initAuthState(dispatch: AppDispatch) {
-  const token = ServerApi.getCsrfToken();
-  const nickname = getNameOrEmail();
-  if (token && nickname) {
-    const response = await ServerApi.getProtected();
-    if (response.ok) {
-      dispatch(login({ nameOrEmail: nickname, token: token }));
+  const token = ServerApi.getCsrfRefreshToken();
+  if (token) {
+    const response = await ServerApi.refresh();
+    if (!response.ok) {
+      dispatch(logout());
       return;
     }
-    dispatch(logout());
+    const credentials: ICredentials = await response.json();
+    dispatch(login(credentials));
   }
 }
 

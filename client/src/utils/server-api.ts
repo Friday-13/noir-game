@@ -1,6 +1,7 @@
 import getCookieValue from "./getCookieValue";
 
 const CSRF_TOKEN_NAME = "csrf_access_token";
+const CSRF_REFRESH_TOKEN_NAME = "csrf_refresh_token";
 const BASE_URL = "http://127.0.0.1:8000";
 
 export default class ServerApi {
@@ -39,6 +40,18 @@ export default class ServerApi {
     return response;
   }
 
+  static async refresh() {
+    const response = await fetch(`${BASE_URL}/refresh`, {
+      method: "POST",
+      headers: {
+        "x-csrf-token": this.getCsrfRefreshToken(),
+        accept: "application/json",
+      },
+      credentials: "include",
+    });
+    return response;
+  }
+
   static async getProtected() {
     const response = await fetch(`${BASE_URL}/protected`, {
       method: "GET",
@@ -53,6 +66,11 @@ export default class ServerApi {
 
   static getCsrfToken() {
     const csrfToken = getCookieValue(CSRF_TOKEN_NAME) || "";
+    return csrfToken;
+  }
+
+  static getCsrfRefreshToken() {
+    const csrfToken = getCookieValue(CSRF_REFRESH_TOKEN_NAME) || "";
     return csrfToken;
   }
 }

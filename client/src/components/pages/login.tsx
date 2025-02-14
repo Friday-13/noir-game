@@ -1,6 +1,5 @@
-import { login } from "@/store/auth-slice";
+import { ICredentials, login } from "@/store/auth-slice";
 import { useAppDispatch } from "@/store/hooks";
-import { saveNameOrEmail } from "@/utils/manage-nickname";
 import ServerApi from "@/utils/server-api";
 import Form from "@components/form/form";
 import { FormEvent, useState } from "react";
@@ -26,10 +25,8 @@ function Login() {
       }
       return;
     }
-    dispatch(
-      login({ nameOrEmail: nameOrEmail, token: ServerApi.getCsrfToken() })
-    );
-    saveNameOrEmail(nameOrEmail);
+    const credentials: ICredentials = await response.json();
+    dispatch(login(credentials));
     navigate("/");
   };
 

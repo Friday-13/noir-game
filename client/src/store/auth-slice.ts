@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
-export interface IUser {
-  nameOrEmail: string;
-  token: string;
+export interface ICredentials {
+  name: string;
+  auth_token: string;
+  refresh_token: string;
 }
 
 export interface IAuthState {
   isAuth: boolean;
-  user?: IUser;
+  user?: ICredentials;
 }
 
 const initialAuthState: IAuthState = {
@@ -20,7 +21,7 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: initialAuthState,
   reducers: {
-    login: (state, action: PayloadAction<IUser>) => {
+    login: (state, action: PayloadAction<ICredentials>) => {
       state.isAuth = true;
       state.user = action.payload;
     },

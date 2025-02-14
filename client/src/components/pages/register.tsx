@@ -1,4 +1,4 @@
-import { login } from "@/store/auth-slice";
+import { ICredentials, login } from "@/store/auth-slice";
 import { useAppDispatch } from "@/store/hooks";
 import { saveNameOrEmail } from "@/utils/manage-nickname";
 import ServerApi from "@/utils/server-api";
@@ -29,10 +29,8 @@ function Register() {
       }
       return;
     }
-    dispatch(
-      login({ nameOrEmail: name, token: ServerApi.getCsrfToken() })
-    );
-    saveNameOrEmail(name);
+    const credentials: ICredentials = await response.json();
+    dispatch(login(credentials));
     navigate("/");
   };
 
