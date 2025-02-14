@@ -3,7 +3,7 @@ import copy
 from fastapi.testclient import TestClient
 
 from server.main import app
-from server.core.security import config
+from server.core.security import config, auth
 from server.schemas.auth import UserLoginScheme, UserRegisterScheme
 
 client = TestClient(app)
@@ -93,10 +93,72 @@ def test_protected_without_access_token(test_user):
     login_cookies = login_response.cookies
     access_token = login_cookies.get(config.JWT_ACCESS_COOKIE_NAME)
     csrf_token = login_cookies.get(config.JWT_ACCESS_CSRF_COOKIE_NAME)
+    refresh_token = login_cookies.get(config.JWT_REFRESH_COOKIE_NAME)
+    csrf_refresh_token = login_cookies.get(config.JWT_REFRESH_CSRF_COOKIE_NAME)
 
     assert access_token is not None
     assert csrf_token is not None
+    assert refresh_token is not None
+    assert csrf_refresh_token is not None
 
     headers = {"x-csrf-token": csrf_token}
     response = client.get("/protected", headers=headers)
     assert response.status_code == 401
+
+
+def test_refresh(test_user):
+    user = UserLoginScheme(email_or_name=test_user.name, password=test_user.password)
+    login_response = client.post("/login", json=user.model_dump())
+    login_cookies = login_response.cookies
+    refresh_token = login_cookies.get(config.JWT_REFRESH_COOKIE_NAME)
+    csrf_refresh_token = login_cookies.get(config.JWT_REFRESH_CSRF_COOKIE_NAME)
+
+    assert refresh_token is not None
+    assert csrf_refresh_token is not None
+
+    headers = {"x-csrf-token": csrf_refresh_token}
+    refresh_response = client.post(
+        "/refresh",
+        headers=headers,
+        cookies={config.JWT_REFRESH_COOKIE_NAME: refresh_token},
+    )
+    assert refresh_response.status_code == 200
+
+def test_refresh_without_refresh_token(test_user):
+    user = UserLoginScheme(email_or_name=test_user.name, password=test_user.password)
+    login_response = client.post("/login", json=user.model_dump())
+    login_cookies = login_response.cookies
+    refresh_token = login_cookies.get(config.JWT_REFRESH_COOKIE_NAME)
+    csrf_refresh_token = login_cookies.get(config.JWT_REFRESH_CSRF_COOKIE_NAME)
+
+    assert refresh_token is not None
+    assert csrf_refresh_token is not None
+
+    headers = {"x-csrf-token": csrf_refresh_token}
+    refresh_response = client.post(
+        "/refresh",
+        headers=headers,
+    )
+    assert refresh_response.status_code == 401
+
+
+def test_refresh_without_wrong_refresh_token(test_user):
+    user = UserLoginScheme(email_or_name=test_user.name, password=test_user.password)
+    login_response = client.post("/login", json=user.model_dump())
+    login_cookies = login_response.cookies
+    refresh_token = login_cookies.get(config.JWT_REFRESH_COOKIE_NAME) 
+    csrf_refresh_token = login_cookies.get(config.JWT_REFRESH_CSRF_COOKIE_NAME)
+
+    assert refresh_token is not None
+    assert csrf_refresh_token is not None
+
+
+    wrong_refresh_token = auth.create_refresh_token(uid=str("wrong"))
+
+    headers = {"x-csrf-token": csrf_refresh_token}
+    refresh_response = client.post(
+        "/refresh",
+        headers=headers,
+        cookies={config.JWT_REFRESH_COOKIE_NAME: wrong_refresh_token},
+    )
+    assert refresh_response.status_code == 401

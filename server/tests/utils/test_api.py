@@ -60,3 +60,4 @@ def test_validate_password_wrong():
     with pytest.raises(HTTPException) as excinfo:
         validate_password(password, wrong_password_hash)
     assert excinfo.value.status_code == 401
+
