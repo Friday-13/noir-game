@@ -12,3 +12,9 @@ class UserRegisterScheme(BaseModel):
     email: EmailStr = Field(max_length=255)
     name: str = Field(max_length=50)
     password: str = Field(max_length=255)
+
+
+class AuthResponseScheme(BaseModel):
+    name: str
+    auth_token: str
+    refresh_token: str
