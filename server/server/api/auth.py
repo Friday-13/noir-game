@@ -4,7 +4,7 @@ from authx import RequestToken, TokenPayload
 from fastapi import APIRouter, Body, Depends, Response
 
 from server.core.security import access_header_scheme, auth, refresh_header_scheme
-from server.db.models import UserRepository
+from server.db.user_model import UserRepository
 from server.db.session import SessionDep
 from server.schemas.auth import UserLoginScheme, UserRegisterScheme
 from server.utils.api import (

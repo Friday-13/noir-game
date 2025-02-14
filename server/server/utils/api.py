@@ -5,7 +5,7 @@ from fastapi import HTTPException, Response
 from passlib.hash import bcrypt
 
 from server.core.security import auth, config
-from server.db.models import UserModel
+from server.db.user_model import UserModel
 from server.schemas.auth import UserRegisterScheme
 
 

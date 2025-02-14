@@ -6,4 +6,4 @@ Handles database integration, including:
 - Definitions of models representing database tables.
 """
 
-import server.db.models
+import server.db.user_model

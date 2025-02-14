@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from passlib.hash import bcrypt
 import pytest
-from server.db.models import UserModel
+from server.db.user_model import UserModel
 from server.utils.api import (
     validate_password,
     validate_user_existance,
