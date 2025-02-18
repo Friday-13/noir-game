@@ -33,8 +33,16 @@ def validate_password(password, pass_hash):
         raise HTTPException(401, detail={"message": "Invalid credentials"})
 
 
+def encode_payload(token_payload: TokenPayload):
+    return token_payload.encode(
+        key=auth.config.private_key,
+        algorithm=auth.config.JWT_ALGORITHM,
+    )
+
+
 def set_access_token(response: Response, uid):
-    token = auth.create_access_token(uid=str(uid))
+    token_payload = auth.create_access_token_payload(uid=str(uid))
+    token = encode_payload(token_payload)
     auth.set_access_cookies(response=response, token=token)
     return token
 
@@ -43,7 +51,8 @@ def set_refresh_token(response: Response, uid):
     max_age = 0
     if isinstance(config.JWT_REFRESH_TOKEN_EXPIRES, timedelta):
         max_age = int(config.JWT_REFRESH_TOKEN_EXPIRES.total_seconds())
-    refresh_token = auth.create_refresh_token(uid=str(uid))
+    refresh_token_payload = auth.create_refresh_token_payload(uid=str(uid))
+    refresh_token = encode_payload(refresh_token_payload)
     auth.set_refresh_cookies(refresh_token, response, max_age)
     return refresh_token
 
