@@ -1,11 +1,9 @@
 import os
 from datetime import timedelta
 
-from authx import AuthXConfig
+from authx import AuthX, AuthXConfig
 from dotenv import load_dotenv
 from fastapi.security import APIKeyCookie, APIKeyHeader
-
-from server.core.authx_with_payloads import AuthXWithPayloads
 
 load_dotenv()
 
@@ -25,7 +23,7 @@ config = AuthXConfig(
 )
 
 
-auth = AuthXWithPayloads(config=config)
+auth = AuthX(config=config)
 access_header_scheme = APIKeyHeader(name=config.JWT_ACCESS_CSRF_HEADER_NAME)
 refresh_header_scheme = APIKeyHeader(name=config.JWT_REFRESH_CSRF_HEADER_NAME)
 refresh_cookie_scheme = APIKeyCookie(name=config.JWT_REFRESH_COOKIE_NAME)

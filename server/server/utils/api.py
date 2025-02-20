@@ -41,8 +41,7 @@ def encode_payload(token_payload: TokenPayload):
 
 
 def set_access_token(response: Response, uid):
-    token_payload = auth.create_access_token_payload(uid=str(uid))
-    token = encode_payload(token_payload)
+    token = auth.create_access_token(uid=str(uid))
     auth.set_access_cookies(response=response, token=token)
     return token
 
@@ -51,8 +50,7 @@ def set_refresh_token(response: Response, uid):
     max_age = 0
     if isinstance(config.JWT_REFRESH_TOKEN_EXPIRES, timedelta):
         max_age = int(config.JWT_REFRESH_TOKEN_EXPIRES.total_seconds())
-    refresh_token_payload = auth.create_refresh_token_payload(uid=str(uid))
-    refresh_token = encode_payload(refresh_token_payload)
+    refresh_token = auth.create_refresh_token(uid=str(uid))
     auth.set_refresh_cookies(refresh_token, response, max_age)
     return refresh_token
 
