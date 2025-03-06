@@ -9,6 +9,7 @@ from server.db.token_model import TokenRepository
 from server.db.user_model import UserRepository
 from server.schemas.auth import AuthResponseScheme, UserLoginScheme, UserRegisterScheme
 from server.utils.api import (
+    revocation_check,
     set_user_auth,
     update_user_auth,
     validate_password,
@@ -63,8 +64,11 @@ async def login(
     "/protected",
     dependencies=[Depends(auth.access_token_required), Depends(access_header_scheme)],
 )
-def protected():
-    print("access granted")
+async def protected(
+    session: SessionDep,
+    access_token_request=auth.ACCESS_TOKEN,
+):
+    await revocation_check(session, access_token_request.token)
     return {"access": True}
 
 
@@ -72,8 +76,12 @@ def protected():
     "/is-auth",
     dependencies=[Depends(auth.access_token_required), Depends(access_header_scheme)],
 )
-def check_auth():
-    return {"isAuth": True}
+async def check_auth(
+    session: SessionDep,
+    access_token_request=auth.ACCESS_TOKEN,
+):
+    status = await revocation_check(session, access_token_request.token)
+    return {"isAuth": status}
 
 
 @auth_router.post(
@@ -89,14 +97,7 @@ async def refresh(
     refresh_payload: TokenPayload = Depends(auth.refresh_token_required),
     refresh_token_request=auth.REFRESH_TOKEN,
 ) -> AuthResponseScheme:
-
-    is_active = TokenRepository.is_active(session, refresh_token_request.token)
-    if not is_active:
-        raise HTTPException(
-            status_code=401,
-            detail="Invalid refresh token",
-        )
-
+    await revocation_check(session, refresh_token_request.token)
     token, refresh_token = update_user_auth(
         response, refresh_payload, refresh_token_request
     )
@@ -117,23 +118,22 @@ async def refresh(
     return credentials
 
 
-# @auth_router.post(
-#     "/logout",
-#     dependencies=[
-#         Depends(auth.refresh_token_required),
-#         Depends(auth.access_token_required),
-#         Depends(refresh_header_scheme),
-#         Depends(access_header_scheme),
-#     ],
-# )
-# async def logout(
-#     response: Response,
-#     session: SessionDep,
-#     refresh_token_request=auth.REFRESH_TOKEN,
-#     access_token_request=auth.ACCESS_TOKEN,
-# ):
-#     await TokenRepository.revoke_tokens(
-#         session, [refresh_token_request.token, access_token_request.token]
-#     )
-#     auth.unset_cookies(response)
-#     return "OK"
+@auth_router.post(
+    "/logout",
+    dependencies=[
+        Depends(auth.access_token_required),
+        Depends(access_header_scheme),
+    ],
+)
+async def logout(
+    response: Response,
+    session: SessionDep,
+    refresh_token_request=auth.REFRESH_TOKEN,
+    access_token_request=auth.ACCESS_TOKEN,
+):
+    await revocation_check(session, refresh_token_request.token)
+    await TokenRepository.revoke_tokens(
+        session, [refresh_token_request.token, access_token_request.token]
+    )
+    auth.unset_cookies(response)
+    return "OK"

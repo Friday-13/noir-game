@@ -5,6 +5,8 @@ from fastapi import HTTPException, Response
 from passlib.hash import bcrypt
 
 from server.core.security import auth, config
+from server.db.session import SessionDep
+from server.db.token_model import TokenRepository
 from server.db.user_model import UserModel
 from server.schemas.auth import UserRegisterScheme
 
@@ -71,3 +73,13 @@ def update_user_auth(
         token = set_access_token(response, uid)
         return token, refresh_token_request.token
     return set_user_auth(response, uid)
+
+
+async def revocation_check(session: SessionDep, token: str):
+    is_active = await TokenRepository.is_active(session, token)
+    if not is_active:
+        raise HTTPException(
+            status_code=401,
+            detail="Token is revoked",
+        )
+    return True

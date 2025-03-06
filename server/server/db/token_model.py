@@ -1,13 +1,12 @@
 from datetime import datetime
-from typing import Literal
+from typing import Literal, Sequence
 
-from authx import TokenPayload
 from passlib.hash import bcrypt
 from sqlalchemy import Boolean, DateTime, ForeignKey, String, select, update
 from sqlalchemy.orm import Mapped, mapped_column
 
-from server.core.security import auth
 from server.db.session import Base, SessionDep
+from server.utils.auth_config import get_token_payload
 
 type TokenType = Literal["access", "refresh"]
 
@@ -31,11 +30,7 @@ class TokenRepository:
     def _add_token_to_session(
         session: SessionDep, token: str, is_revoked: bool = False
     ):
-        key = auth.config.JWT_SECRET_KEY
-        if key is None:
-            raise ValueError("You have to set up JWT_SECRET_KEY")
-        token_payload = TokenPayload.decode(token, key=key, verify=False)
-
+        token_payload = get_token_payload(token)
         new_token = TokenModel(
             user_id=token_payload.sub,
             token_hash=bcrypt.hash(token),
@@ -65,24 +60,43 @@ class TokenRepository:
         return new_token
 
     @staticmethod
-    async def get_token(session: SessionDep, token: str):
-        token_hash = bcrypt.encrypt(token)
-        query = select(TokenModel).where(TokenModel.token_hash == token_hash)
+    async def get_token(session: SessionDep, token: str) -> TokenModel | None:
+        token_payload = get_token_payload(token)
+        query = select(TokenModel).where(
+            (TokenModel.user_id == token_payload.sub)
+            & (TokenModel.issued_at == token_payload.issued_at)
+        )
         data = await session.execute(query)
-        token_id_db = data.scalar_one_or_none()
-        return token_id_db
+        tokens_id_db = data.scalars().all()
+        for token_in_db in tokens_id_db:
+            if bcrypt.verify(token, token_in_db.token_hash):
+                return token_in_db
 
     @staticmethod
     async def revoke_tokens(session: SessionDep, tokens: list[str]):
-        token_hashes = [bcrypt.encrypt(token) for token in tokens]
-        query = (
+        uids = [get_token_payload(token).sub for token in tokens]
+
+        select_query = select(TokenModel).where(
+            (TokenModel.is_revoked.is_(False)) & (TokenModel.user_id.in_(uids))
+        )
+        select_result = await session.execute(select_query)
+        rows: Sequence[TokenModel] = select_result.scalars().all()
+
+        revoked_ids = []
+        for row in rows:
+            for token in tokens:
+                if bcrypt.verify(token, row.token_hash):
+                    revoked_ids.append(row.id)
+                    break
+        update_query = (
             update(TokenModel)
-            .where(TokenModel.token_hash.in_(token_hashes))
+            .where(TokenModel.id.in_(revoked_ids))
             .values(is_revoked=True)
         )
-        result = await session.execute(query)
+
+        update_result = await session.execute(update_query)
         await session.commit()
-        return result.rowcount
+        return update_result.rowcount
 
     @classmethod
     async def is_active(cls, session: SessionDep, token: str):
