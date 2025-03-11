@@ -1,3 +1,4 @@
+from fastapi.testclient import TestClient
 import pytest
 from server.main import app
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
@@ -33,3 +34,8 @@ def test_user() -> UserRegisterScheme:
     email = "user@example.com"
     password = "testpassword"
     return UserRegisterScheme(name=name, email=email, password=password)
+
+@pytest.fixture
+def client() -> TestClient:
+    client = TestClient(app)
+    return client
