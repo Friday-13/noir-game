@@ -35,13 +35,6 @@ def validate_password(password, pass_hash):
         raise HTTPException(401, detail={"message": "Invalid credentials"})
 
 
-def encode_payload(token_payload: TokenPayload):
-    return token_payload.encode(
-        key=auth.config.private_key,
-        algorithm=auth.config.JWT_ALGORITHM,
-    )
-
-
 def set_access_token(response: Response, uid):
     token = auth.create_access_token(uid=str(uid))
     auth.set_access_cookies(response=response, token=token)
