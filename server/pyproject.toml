@@ -16,6 +16,7 @@ dependencies = [
     "aiosqlite (>=0.20.0,<0.21.0)",
     "passlib (>=1.7.4,<2.0.0)",
     "bcrypt (<4.0.0)",
+    "pytest-asyncio (>=0.25.3,<0.26.0)",
 ]
 
 
@@ -29,7 +30,6 @@ isort = "^5.13.2"
 black = "^24.10.0"
 pytest = "^8.3.4"
 httpx = "^0.28.1"
-pytest-asyncio = "^0.25.2"
 pytest-cov = "^6.0.0"
 
 [tool.black]
@@ -38,4 +38,12 @@ line-length = 88
 [tool.isort]
 profile = "black"
 
+[tool.pytest.ini_options]
+pythonpath = ["."]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+addopts = "--cov=server --cov-report=term-missing --cov-branch"
+
+[tool.coverage.run]
+concurrency = ["greenlet"]
 

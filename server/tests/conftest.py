@@ -1,9 +1,10 @@
-from fastapi.testclient import TestClient
+from httpx import ASGITransport, AsyncClient
 import pytest
 from server.main import app
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from server.db.session import Base, get_session
 from server.schemas.auth import UserRegisterScheme
+import pytest_asyncio
 
 TEST_DB_URL = "sqlite+aiosqlite:///:memory:"
 
@@ -35,7 +36,9 @@ def test_user() -> UserRegisterScheme:
     password = "testpassword"
     return UserRegisterScheme(name=name, email=email, password=password)
 
-@pytest.fixture
-def client() -> TestClient:
-    client = TestClient(app)
-    return client
+@pytest_asyncio.fixture(loop_scope="package")
+async def client():
+    async with AsyncClient(
+        transport=ASGITransport(app), base_url="http://testserver"
+    ) as client:
+        yield client
