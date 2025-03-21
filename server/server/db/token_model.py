@@ -1,7 +1,6 @@
 from datetime import datetime
 from typing import Literal, Sequence
 
-from passlib.hash import bcrypt
 from sqlalchemy import Boolean, DateTime, ForeignKey, String, select, update
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -9,6 +8,7 @@ from server.db.session import Base, SessionDep
 from server.utils.auth_config import get_token_payload
 
 type TokenType = Literal["access", "refresh"]
+from server.core.token_security import hash_token, verify_token
 
 
 class TokenModel(Base):
@@ -33,7 +33,7 @@ class TokenRepository:
         token_payload = get_token_payload(token)
         new_token = TokenModel(
             user_id=token_payload.sub,
-            token_hash=bcrypt.hash(token),
+            token_hash=hash_token(token),
             token_type=token_payload.type,
             issued_at=token_payload.issued_at,
             expire_at=token_payload.expiry_datetime,
@@ -69,7 +69,7 @@ class TokenRepository:
         data = await session.execute(query)
         tokens_id_db = data.scalars().all()
         for token_in_db in tokens_id_db:
-            if bcrypt.verify(token, token_in_db.token_hash):
+            if verify_token(token, token_in_db.token_hash):
                 return token_in_db
 
     @staticmethod
@@ -84,10 +84,9 @@ class TokenRepository:
 
         revoked_ids = []
         for row in rows:
-            for token in tokens:
-                if bcrypt.verify(token, row.token_hash):
-                    revoked_ids.append(row.id)
-                    break
+            if any(verify_token(token, row.token_hash) for token in tokens):
+                revoked_ids.append(row.id)
+
         update_query = (
             update(TokenModel)
             .where(TokenModel.id.in_(revoked_ids))

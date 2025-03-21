@@ -5,6 +5,22 @@ const CSRF_REFRESH_TOKEN_NAME = "csrf_refresh_token";
 const BASE_URL = "http://127.0.0.1:8000";
 
 export default class ServerApi {
+  private static async fetch(
+    input: RequestInfo | URL,
+    init?: RequestInit
+  ): Promise<Response> {
+    let response = await fetch(input, init);
+    if (response.status === 401) {
+      const refreshResponse = await ServerApi.refresh();
+      if (!refreshResponse.ok) {
+        throw new Error("Unauthorized");
+      }
+
+      response = await fetch(input, init);
+    }
+    return response;
+  }
+
   static async login(nameOrEmail: string, password: string) {
     const loginData = {
       email_or_name: nameOrEmail,
@@ -20,6 +36,18 @@ export default class ServerApi {
       body: JSON.stringify(loginData),
     });
     return response;
+  }
+
+  static async logout() {
+    await ServerApi.fetch(`${BASE_URL}/logout`, {
+      method: "POST",
+      headers: {
+        "x-csrf-token": this.getCsrfToken(),
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+      credentials: "include",
+    });
   }
 
   static async register(name: string, email: string, password: string) {
@@ -53,7 +81,7 @@ export default class ServerApi {
   }
 
   static async getProtected() {
-    const response = await fetch(`${BASE_URL}/protected`, {
+    const response = await ServerApi.fetch(`${BASE_URL}/protected`, {
       method: "GET",
       credentials: "include",
       headers: {
