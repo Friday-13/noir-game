@@ -56,7 +56,6 @@ export default class ServerApi {
       email: email,
       password: password,
     };
-
     const response = await fetch(`${BASE_URL}/register`, {
       method: "POST",
       headers: {

@@ -35,15 +35,41 @@ interface ILogin {
   password: string;
 }
 
+interface IRegister {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export const login = createAsyncThunk<
   ICredentials,
   ILogin,
   { rejectValue: string }
->("auth/login", async (hehe: ILogin, { rejectWithValue }) => {
-  const response = await ServerApi.login(hehe.nameOrEmail, hehe.password);
+>("auth/login", async (loginData: ILogin, { rejectWithValue }) => {
+  const response = await ServerApi.login(
+    loginData.nameOrEmail,
+    loginData.password
+  );
   const content = await response.json();
   if (!response.ok) {
     return rejectWithValue(content?.detail?.message || "Authorization error");
+  }
+  return content as ICredentials;
+});
+
+export const register = createAsyncThunk<
+  ICredentials,
+  IRegister,
+  { rejectValue: string }
+>("auth/register", async (registerData: IRegister, { rejectWithValue }) => {
+  const response = await ServerApi.register(
+    registerData.name,
+    registerData.email,
+    registerData.password
+  );
+  const content = await response.json();
+  if (!response.ok) {
+    return rejectWithValue(content?.detail?.message || "Registration error");
   }
   return content as ICredentials;
 });
@@ -69,6 +95,16 @@ export const authSlice = createSlice({
         state.user = null;
         state.error = action.payload || "Unknown authorization error";
       })
+      .addCase(register.rejected, (state, action) => {
+        state.isAuth = false;
+        state.user = null;
+        state.error = action.payload || "Unknown registration error";
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.isAuth = true;
+        state.user = action.payload;
+        state.error = null;
+      });
   },
 });
 

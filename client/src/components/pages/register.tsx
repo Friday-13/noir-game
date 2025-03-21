@@ -1,10 +1,8 @@
-import { ICredentials, login } from "@/store/auth-slice";
-import { useAppDispatch } from "@/store/hooks";
-import { saveNameOrEmail } from "@/utils/manage-nickname";
-import ServerApi from "@/utils/server-api";
+import { register } from "@/store/auth-slice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Form from "@components/form/form";
-import { FormEvent, useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { FormEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [name, setName] = useState<string>("username");
@@ -13,26 +11,20 @@ function Register() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const authState = useAppSelector((state) => state.auth);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(name);
-    console.log(password);
-    const response = await ServerApi.register(name, email, password);
-    if (!response.ok) {
-      const content = await response.json();
-      const message = content?.detail?.message;
-      if (message) {
-        setErrorMessage(message);
-      } else {
-        throw new Error(JSON.stringify(content));
-      }
-      return;
-    }
-    const credentials: ICredentials = await response.json();
-    dispatch(login(credentials));
-    navigate("/");
+    dispatch(register({ name, email, password }));
   };
+
+  useEffect(() => {
+    if (authState.isAuth) {
+      navigate("/");
+    } else {
+      setErrorMessage(authState.error);
+    }
+  }, [authState.isAuth, authState.error, navigate]);
 
   return (
     <Form onSubmit={handleSubmit}>
