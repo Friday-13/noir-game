@@ -6,6 +6,8 @@ import { useAppDispatch } from "@/store/hooks";
 import { increment } from "@/store/counter-slice";
 import { Link, useLocation } from "react-router-dom";
 import HeaderAuth from "./header-auth";
+import { checkAuth } from "@/store/auth-slice";
+import ServerApi from "@/utils/server-api";
 
 function Header() {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -41,7 +43,12 @@ function Header() {
               <img src="logo.png" alt="logo" />
             </Link>
           </div>
-          <h1>The Noir Game</h1>
+          <h1 onClick={async () => {
+            const checking = checkAuth();
+            dispatch(checking)
+            const response = await ServerApi.getProtected();
+            console.log(response.ok);
+          }}>The Noir Game</h1>
           <HeaderAuth />
         </div>
         {isCollapsible && (
