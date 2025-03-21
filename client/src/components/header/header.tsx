@@ -18,11 +18,11 @@ function Header() {
   const headerContainerStyle = clsx(
     styles.headerContainer,
     isCollapsible && styles.headerContainerCollapsible,
-    (!isCollapsible || isVisible) && styles.headerContainerShow
+    (!isCollapsible || isVisible) && styles.headerContainerShow,
   );
   const headerStyle = clsx(
     styles.header,
-    isCollapsible && styles.headerIsCollabsible
+    isCollapsible && styles.headerIsCollabsible,
   );
 
   useEffect(() => {
@@ -43,12 +43,20 @@ function Header() {
               <img src="logo.png" alt="logo" />
             </Link>
           </div>
-          <h1 onClick={async () => {
-            const checking = checkAuth();
-            dispatch(checking)
-            const response = await ServerApi.getProtected();
-            console.log(response.ok);
-          }}>The Noir Game</h1>
+          <h1
+            onClick={async () => {
+              const checking = checkAuth();
+              dispatch(checking);
+              try {
+                const response = await ServerApi.getProtected();
+                console.log(response.ok);
+              } catch (err) {
+                console.log(err);
+              }
+            }}
+          >
+            The Noir Game
+          </h1>
           <HeaderAuth />
         </div>
         {isCollapsible && (

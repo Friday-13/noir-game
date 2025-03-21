@@ -84,10 +84,9 @@ class TokenRepository:
 
         revoked_ids = []
         for row in rows:
-            for token in tokens:
-                if verify_token(token, row.token_hash):
-                    revoked_ids.append(row.id)
-                    break
+            if any(verify_token(token, row.token_hash) for token in tokens):
+                revoked_ids.append(row.id)
+
         update_query = (
             update(TokenModel)
             .where(TokenModel.id.in_(revoked_ids))
