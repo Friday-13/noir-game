@@ -7,7 +7,7 @@ const BASE_URL = "http://127.0.0.1:8000";
 export default class ServerApi {
   private static async fetch(
     input: RequestInfo | URL,
-    init?: RequestInit
+    init?: RequestInit,
   ): Promise<Response> {
     let response = await fetch(input, init);
     if (response.status === 401) {

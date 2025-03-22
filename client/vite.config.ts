@@ -8,7 +8,7 @@ const alias = Object.fromEntries(
   Object.entries(tsconfig.compilerOptions.paths).map(([key, [value]]) => [
     key.replace("/*", ""),
     path.resolve(__dirname, value.replace("/*", "")),
-  ])
+  ]),
 );
 
 // https://vite.dev/config/

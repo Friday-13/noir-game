@@ -14,7 +14,7 @@ function HeaderButton(props: IHeaderButton) {
   const icon = props.action == "show" ? showIcon : hideIcon;
   const style = clsx(
     styles.headerShowBtn,
-    props.action == "hide" && styles.headerShowBtnHideMenu
+    props.action == "hide" && styles.headerShowBtnHideMenu,
   );
   return (
     <FrameBox className={style} onClick={props.onClick}>

@@ -48,7 +48,7 @@ export const login = createAsyncThunk<
 >("auth/login", async (loginData: ILogin, { rejectWithValue }) => {
   const response = await ServerApi.login(
     loginData.nameOrEmail,
-    loginData.password
+    loginData.password,
   );
   const content = await response.json();
   if (!response.ok) {
@@ -65,7 +65,7 @@ export const register = createAsyncThunk<
   const response = await ServerApi.register(
     registerData.name,
     registerData.email,
-    registerData.password
+    registerData.password,
   );
   const content = await response.json();
   if (!response.ok) {

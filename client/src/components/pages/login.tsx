@@ -1,4 +1,4 @@
-import {  login } from "@/store/auth-slice";
+import { login } from "@/store/auth-slice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Form from "@components/form/form";
 import { FormEvent, useEffect, useState } from "react";
@@ -14,17 +14,16 @@ function Login() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    await dispatch(login({nameOrEmail, password}));
+    await dispatch(login({ nameOrEmail, password }));
   };
 
   useEffect(() => {
     if (authState.isAuth) {
       navigate("/");
     } else {
-      setErrorMessage(authState.error)
+      setErrorMessage(authState.error);
     }
-  }, [authState.isAuth, authState.error, navigate])
-
+  }, [authState.isAuth, authState.error, navigate]);
 
   return (
     <Form onSubmit={handleSubmit}>
