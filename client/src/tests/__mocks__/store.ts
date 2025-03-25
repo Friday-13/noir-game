@@ -13,9 +13,5 @@ vi.mock("@/store/hooks", () => ({
 
 vi.mock("@/store/auth-slice", () => ({
   checkAuth: vi.fn(),
+  setAuth: vi.fn(),
 }));
-
-// vi.mock('@/utils/server-api', () => ({
-//   getProtected: vi.fn(),
-// }));
-//
