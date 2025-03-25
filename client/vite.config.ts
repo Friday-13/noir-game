@@ -25,6 +25,8 @@ export default defineConfig({
         "./eslint.config.js",
         "./global.d.ts",
         "./vite.config.ts",
+        "./src/tests/__mocks__",
+        "./src/tests/__helpers__"
       ],
     },
   },
