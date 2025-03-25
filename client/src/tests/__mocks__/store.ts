@@ -3,7 +3,7 @@ import { vi } from "vitest";
 import { IAuthState } from "@/store/auth-slice";
 
 vi.mock("@/store/hooks", () => ({
-  useAppDispatch: vi.fn(),
+  useAppDispatch: vi.fn().mockReturnValue(vi.fn()),
   useAppSelector: vi.fn((selector) => {
     return selector({
       auth: { isAuth: false, user: null, error: null } as IAuthState,

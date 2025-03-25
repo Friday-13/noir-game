@@ -2,6 +2,7 @@ import {
   ActionReducerMapBuilder,
   createAsyncThunk,
   createSlice,
+  PayloadAction,
 } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 import ServerApi from "@/utils/server-api";
@@ -82,6 +83,11 @@ export const authSlice = createSlice({
       state.isAuth = false;
       state.user = null;
     },
+    setAuth: (state, action: PayloadAction<IAuthState>) => {
+      state.isAuth = action.payload.isAuth;
+      state.user = action.payload.user;
+      state.error = action.payload.error;
+    },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IAuthState>) => {
     builder
@@ -108,6 +114,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setAuth } = authSlice.actions;
 export const selectAuth = (state: RootState) => state.auth.isAuth;
 export default authSlice.reducer;

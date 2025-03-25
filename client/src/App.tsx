@@ -4,6 +4,7 @@ import Header from "@components/header/header";
 import Login from "./components/pages/login";
 import Register from "./components/pages/register";
 import useInitAuthState from "./utils/is-auth";
+import { getNameOrEmail } from "@utils/manage-nickname";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <h2>Main page</h2>,
+        element: <h2>Main page {getNameOrEmail()}</h2>,
       },
       {
         path: "login",

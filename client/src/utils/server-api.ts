@@ -1,4 +1,4 @@
-import getCookieValue from "./getCookieValue";
+import getCookieValue from "./get-cookie-value";
 
 const CSRF_TOKEN_NAME = "csrf_access_token";
 const CSRF_REFRESH_TOKEN_NAME = "csrf_refresh_token";
