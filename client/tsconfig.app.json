@@ -19,6 +19,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
+    "types": ["vitest"],
     "plugins": [
       {
         "name": "typescript-plugin-css-modules",
@@ -29,10 +30,11 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
       "@utils/*": ["./src/utils/*"],
       "@styles/*": ["./src/styles/*"],
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "@tests/*": ["./src/tests/*"],
+      "@/*": ["./src/*"]
     },
 
     "noImplicitAny": true
