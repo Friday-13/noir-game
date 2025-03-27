@@ -7,13 +7,14 @@ interface IconProps extends HTMLAttributes<HTMLDivElement> {
   size: number;
 }
 
-function Icon(props: IconProps) {
+function Icon({ src, alt, size, className, ...rest }: IconProps) {
   return (
     <div
-      className={[styles.iconContainer, props.className].join(" ")}
-      style={{ width: `${props.size}px` }}
+      className={[styles.iconContainer, className].join(" ")}
+      style={{ width: `${size}px` }}
+      {...rest}
     >
-      <img src={props.src} alt={props.alt} />
+      <img src={src} alt={alt} />
     </div>
   );
 }

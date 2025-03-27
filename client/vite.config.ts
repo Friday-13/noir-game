@@ -26,7 +26,7 @@ export default defineConfig({
         "./global.d.ts",
         "./vite.config.ts",
         "./src/tests/__mocks__",
-        "./src/tests/__helpers__"
+        "./src/tests/__helpers__",
       ],
     },
   },
