@@ -15,12 +15,12 @@ describe("Form component", () => {
         className="test_class__name"
         onSubmit={onSubmitMock}
         data-testid="test-form"
-      />
+      />,
     );
     const form = screen.getByTestId("test-form") as HTMLFormElement;
-    fireEvent.submit(form)
+    fireEvent.submit(form);
     expect(form).toBeInTheDocument();
     expect(onSubmitMock).toHaveBeenCalledOnce();
-    expect(form).toHaveClass("test_class__name")
+    expect(form).toHaveClass("test_class__name");
   });
 });
