@@ -30,11 +30,13 @@ function Login() {
       <h2>Login</h2>
       <input
         type="text"
+        placeholder="name or email"
         value={nameOrEmail}
         onChange={(e) => setNameOrEmail(e.target.value)}
       />
       <input
         type="password"
+        placeholder="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />

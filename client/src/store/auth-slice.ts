@@ -31,7 +31,7 @@ export const checkAuth = createAsyncThunk("auth/checkAuth", async () => {
   return code;
 });
 
-interface ILogin {
+export interface ILogin {
   nameOrEmail: string;
   password: string;
 }
