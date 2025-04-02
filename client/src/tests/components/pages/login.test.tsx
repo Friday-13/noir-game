@@ -1,5 +1,5 @@
 import { IAuthState, ILogin, login } from "@/store/auth-slice";
-import { mockNavigate } from "@tests/__mocks__/navigate";
+import * as accessControlHooks from "@/hooks/access-control";
 import Login from "@components/pages/login";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
@@ -15,7 +15,7 @@ describe("login page", () => {
     render(
       <MemoryRouter>
         <Login />
-      </MemoryRouter>,
+      </MemoryRouter>
     );
   };
 
@@ -44,9 +44,12 @@ describe("login page", () => {
   });
 
   it("Redirect when login successfull", () => {
-    const navigateMock = mockNavigate();
+    const useOnlyUnauthorizedMock = vi.fn();
+    vi.spyOn(accessControlHooks, "useOnlyUnauthorized").mockImplementation(
+      useOnlyUnauthorizedMock
+    );
     renderLoginPage();
-    expect(navigateMock).toHaveBeenCalledWith("/");
+    expect(useOnlyUnauthorizedMock).toHaveBeenCalledOnce();
   });
 
   it("Print error message on error", () => {

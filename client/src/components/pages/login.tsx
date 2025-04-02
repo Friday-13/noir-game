@@ -1,4 +1,4 @@
-import useOnlyUnauthorized from "@/hooks/use-only-unauthorized";
+import { useOnlyUnauthorized } from "@/hooks/access-control";
 import { login } from "@/store/auth-slice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Form from "@components/form/form";

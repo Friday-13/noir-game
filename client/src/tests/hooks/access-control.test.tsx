@@ -1,10 +1,10 @@
 import { mockNavigate } from "@tests/__mocks__/navigate";
 import { setStateMockValue } from "@tests/__mocks__/state";
-import useOnlyUnauthorized from "@/hooks/use-only-unauthorized";
 import { IAuthState } from "@/store/auth-slice";
 import { renderHook } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { useOnlyUnauthorized } from "@/hooks/access-control";
 
 describe("Use only unauthorized hook test", () => {
   afterEach(() => {
