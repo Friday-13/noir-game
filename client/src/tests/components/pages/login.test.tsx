@@ -60,7 +60,7 @@ describe("login page", () => {
     expect(screen.getByText("test error")).toBeInTheDocument();
   });
 
-  it("Try to login with coorect name and password", () => {
+  it("Try to login with correct name and password", () => {
     const authState: IAuthState = {
       isAuth: false,
       user: null,

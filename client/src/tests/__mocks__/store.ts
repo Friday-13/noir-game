@@ -26,4 +26,5 @@ vi.mock("@/store/auth-slice", () => ({
   checkAuth: vi.fn(),
   setAuth: vi.fn(),
   login: vi.fn(),
+  register: vi.fn(),
 }));

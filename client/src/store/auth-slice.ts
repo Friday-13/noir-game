@@ -36,7 +36,7 @@ export interface ILogin {
   password: string;
 }
 
-interface IRegister {
+export interface IRegister {
   name: string;
   email: string;
   password: string;

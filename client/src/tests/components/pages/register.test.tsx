@@ -1,10 +1,10 @@
-import { IAuthState } from "@/store/auth-slice";
+import { IAuthState, IRegister, register } from "@/store/auth-slice";
 import Register from "@components/pages/register";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { mockUseOnlyUnauthorized } from "@tests/__mocks__/access-control";
 import { setStateMockValue } from "@tests/__mocks__/state";
 import { MemoryRouter } from "react-router-dom";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 describe("Registration page", () => {
   const renderRegisterPage = () => {
@@ -44,5 +44,35 @@ describe("Registration page", () => {
     const useOnlyUnauthorizedMock = mockUseOnlyUnauthorized();
     renderRegisterPage();
     expect(useOnlyUnauthorizedMock).toHaveBeenCalledOnce();
+  });
+
+  it("Try to register", () => {
+    const authState: IAuthState = {
+      isAuth: false,
+      user: null,
+      error: null,
+    };
+    setStateMockValue({ auth: authState });
+    const registerMock = vi.mocked(register);
+    renderRegisterPage();
+
+    const nameInput = screen.getByPlaceholderText("name");
+    const emailInput = screen.getByPlaceholderText("email");
+    const passwordInput = screen.getByPlaceholderText("password");
+
+    fireEvent.change(nameInput, { target: { value: "test name" } });
+    fireEvent.change(emailInput, { target: { value: "test email" } });
+    fireEvent.change(passwordInput, { target: { value: "test-password" } });
+
+    const header = screen.getByRole("heading");
+    const form = header.parentElement;
+    fireEvent.submit(form as HTMLFormElement);
+
+    expect(registerMock).toHaveBeenCalledOnce();
+    expect(registerMock).toHaveBeenCalledWith({
+      name: "test name",
+      email: "test email",
+      password: "test-password",
+    } as IRegister);
   });
 });
