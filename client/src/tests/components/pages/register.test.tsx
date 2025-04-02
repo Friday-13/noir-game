@@ -10,7 +10,7 @@ describe("Registration page", () => {
     render(
       <MemoryRouter>
         <Register />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
   };
 

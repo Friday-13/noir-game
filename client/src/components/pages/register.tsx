@@ -1,15 +1,15 @@
+import useOnlyUnauthorized from "@/hooks/use-only-unauthorized";
 import { register } from "@/store/auth-slice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Form from "@components/form/form";
 import { FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function Register() {
+  useOnlyUnauthorized();
   const [name, setName] = useState<string>("username");
   const [email, setEmail] = useState<string>("user@example.com");
   const [password, setPassword] = useState<string>("string");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const authState = useAppSelector((state) => state.auth);
 
@@ -19,12 +19,8 @@ function Register() {
   };
 
   useEffect(() => {
-    if (authState.isAuth) {
-      navigate("/");
-    } else {
-      setErrorMessage(authState.error);
-    }
-  }, [authState.isAuth, authState.error, navigate]);
+    setErrorMessage(authState.error);
+  }, [authState.error]);
 
   return (
     <Form onSubmit={handleSubmit}>
