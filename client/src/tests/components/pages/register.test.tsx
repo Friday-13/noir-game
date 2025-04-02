@@ -38,4 +38,5 @@ describe("Registration page", () => {
     expect(passwordInput).toBeInTheDocument();
     expect(submitInput).toBeInTheDocument();
   });
+
 });
