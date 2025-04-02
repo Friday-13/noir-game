@@ -1,6 +1,7 @@
 import { IAuthState } from "@/store/auth-slice";
 import Register from "@components/pages/register";
 import { render, screen } from "@testing-library/react";
+import { mockUseOnlyUnauthorized } from "@tests/__mocks__/access-control";
 import { setStateMockValue } from "@tests/__mocks__/state";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
@@ -37,5 +38,11 @@ describe("Registration page", () => {
     expect(emailInput).toBeInTheDocument();
     expect(passwordInput).toBeInTheDocument();
     expect(submitInput).toBeInTheDocument();
+  });
+
+  it("Access control implemeted", () => {
+    const useOnlyUnauthorizedMock = mockUseOnlyUnauthorized();
+    renderRegisterPage();
+    expect(useOnlyUnauthorizedMock).toHaveBeenCalledOnce();
   });
 });

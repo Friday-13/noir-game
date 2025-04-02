@@ -12,4 +12,3 @@ export function useOnlyUnauthorized() {
     }
   }, [authState.isAuth, navigate]);
 }
-

@@ -1,10 +1,10 @@
 import { IAuthState, ILogin, login } from "@/store/auth-slice";
-import * as accessControlHooks from "@/hooks/access-control";
 import Login from "@components/pages/login";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { setStateMockValue } from "@tests/__mocks__/state";
+import { mockUseOnlyUnauthorized } from "@tests/__mocks__/access-control";
 
 describe("login page", () => {
   afterEach(() => {
@@ -15,7 +15,7 @@ describe("login page", () => {
     render(
       <MemoryRouter>
         <Login />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
   };
 
@@ -43,11 +43,8 @@ describe("login page", () => {
     expect(submitInput).toBeInTheDocument();
   });
 
-  it("Redirect when login successfull", () => {
-    const useOnlyUnauthorizedMock = vi.fn();
-    vi.spyOn(accessControlHooks, "useOnlyUnauthorized").mockImplementation(
-      useOnlyUnauthorizedMock
-    );
+  it("Access control implemeted", () => {
+    const useOnlyUnauthorizedMock = mockUseOnlyUnauthorized();
     renderLoginPage();
     expect(useOnlyUnauthorizedMock).toHaveBeenCalledOnce();
   });

@@ -31,7 +31,6 @@ function Header() {
     } else {
       setIsCollapsible(false);
     }
-    console.log(location.pathname);
   }, [location]);
 
   return (
