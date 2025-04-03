@@ -25,7 +25,7 @@ function Header() {
   );
 
   useEffect(() => {
-    if (location.pathname == "/game") {
+    if (location.pathname === "/game") {
       setIsCollapsible(true);
     } else {
       setIsCollapsible(false);
