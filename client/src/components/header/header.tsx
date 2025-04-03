@@ -3,7 +3,6 @@ import styles from "./header.module.scss";
 import clsx from "clsx";
 import HeaderButton from "./header-button";
 import { useAppDispatch } from "@/store/hooks";
-import { increment } from "@/store/counter-slice";
 import { Link, useLocation } from "react-router-dom";
 import HeaderAuth from "./header-auth";
 import { checkAuth } from "@/store/auth-slice";
@@ -74,7 +73,6 @@ function Header() {
             action={isVisible ? "hide" : "show"}
             onClick={() => {
               setIsVisible(!isVisible);
-              dispatch(increment());
             }}
           />
         )}
