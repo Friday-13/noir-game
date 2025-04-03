@@ -1,5 +1,4 @@
 import { IAuthState } from "@/store/auth-slice";
-import { ICounterState } from "@/store/counter-slice";
 import { useAppSelector } from "@/store/hooks";
 import { vi } from "vitest";
 
@@ -13,22 +12,11 @@ const defaultTestAuth: IAuthState = {
   error: null,
 };
 
-const defaultTestCounter: ICounterState = {
-  value: 0,
-};
-
-export const setStateMockValue = ({
-  auth,
-  counter,
-}: {
-  auth?: IAuthState;
-  counter?: ICounterState;
-}) => {
+export const setStateMockValue = ({ auth }: { auth?: IAuthState }) => {
   const mockedUseAppSelector = vi.mocked(useAppSelector);
   mockedUseAppSelector.mockImplementation((selector) =>
     selector({
       auth: auth || defaultTestAuth,
-      counter: counter || defaultTestCounter,
     }),
   );
   return mockedUseAppSelector;
