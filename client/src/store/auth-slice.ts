@@ -79,14 +79,14 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: initialAuthState,
   reducers: {
-    logout: (state) => {
-      state.isAuth = false;
-      state.user = null;
-    },
     setAuth: (state, action: PayloadAction<IAuthState>) => {
       state.isAuth = action.payload.isAuth;
       state.user = action.payload.user;
       state.error = action.payload.error;
+    },
+    logout: (state) => {
+      state.isAuth = false;
+      state.user = null;
     },
   },
   extraReducers: (builder: ActionReducerMapBuilder<IAuthState>) => {
