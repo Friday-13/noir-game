@@ -1,3 +1,6 @@
 cd server
 pytest --cov=server --cov-report=term-missing
 cd ..
+cd client
+npm run test
+cd ..

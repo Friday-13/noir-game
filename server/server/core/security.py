@@ -1,8 +1,9 @@
 import os
+from datetime import timedelta
 
 from authx import AuthX, AuthXConfig
 from dotenv import load_dotenv
-from fastapi.security import APIKeyHeader
+from fastapi.security import APIKeyCookie, APIKeyHeader
 
 load_dotenv()
 
@@ -18,7 +19,11 @@ config = AuthXConfig(
     JWT_ALGORITHM="HS256",
     JWT_SECRET_KEY=get_secret_key(),
     JWT_TOKEN_LOCATION=["cookies"],
+    JWT_REFRESH_TOKEN_EXPIRES=timedelta(days=20),
 )
 
+
 auth = AuthX(config=config)
-header_scheme = APIKeyHeader(name=config.JWT_ACCESS_CSRF_HEADER_NAME)
+access_header_scheme = APIKeyHeader(name=config.JWT_ACCESS_CSRF_HEADER_NAME)
+refresh_header_scheme = APIKeyHeader(name=config.JWT_REFRESH_CSRF_HEADER_NAME)
+refresh_cookie_scheme = APIKeyCookie(name=config.JWT_REFRESH_COOKIE_NAME)

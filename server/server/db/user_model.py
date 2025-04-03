@@ -44,7 +44,7 @@ class UserRepository:
             )
         query = select(UserModel).where(filter_condition)
         data = await session.execute(query)
-        user_in_db = data.scalar_one_or_none()
+        user_in_db = data.scalars().first()
         return user_in_db
 
     @staticmethod

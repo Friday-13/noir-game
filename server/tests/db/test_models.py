@@ -1,5 +1,5 @@
 import pytest
-from server.db.models import UserRepository
+from server.db.user_model import UserRepository
 from passlib.hash import bcrypt
 
 from server.schemas.auth import UserRegisterScheme

@@ -1,0 +1,58 @@
+@use "@styles/variables.module" as *;
+@use "@styles/reset.module";
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-image: url("light-background.jpg");
+  font-family: $font-body;
+}
+
+h1 {
+  font-family: $font-title;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 48px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+h2 {
+  font-family: $font-heading;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #fff;
+  }
+}
