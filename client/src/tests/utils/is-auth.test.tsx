@@ -13,10 +13,10 @@ describe("Init auth state", () => {
     });
     ServerApi.getCsrfRefreshToken = vi.fn().mockReturnValue("token");
 
-    function TestComponent() {
+    const TestComponent = () => {
       useInitAuthState();
       return <p>Test component</p>;
-    }
+    };
 
     render(<TestComponent />);
     expect(ServerApi.getProtected).toHaveBeenCalledOnce();

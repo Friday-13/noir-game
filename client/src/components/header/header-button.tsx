@@ -10,7 +10,7 @@ interface IHeaderButton extends HTMLAttributes<HTMLDivElement> {
   action: "show" | "hide";
 }
 
-function HeaderButton(props: IHeaderButton) {
+const HeaderButton = (props: IHeaderButton) => {
   const icon = props.action == "show" ? showIcon : hideIcon;
   const style = clsx(
     styles.headerShowBtn,
@@ -21,6 +21,6 @@ function HeaderButton(props: IHeaderButton) {
       <Icon src={icon} alt="fold-menu" size={32} />
     </FrameBox>
   );
-}
+};
 
 export default HeaderButton;

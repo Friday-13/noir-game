@@ -5,7 +5,7 @@ import { AppDispatch } from "@/store/store";
 import { ICredentials, setAuth } from "@/store/auth-slice";
 import { removeNameOrEmail } from "./manage-nickname";
 
-async function initAuthState(dispatch: AppDispatch) {
+const initAuthState = async (dispatch: AppDispatch) => {
   const token = ServerApi.getCsrfRefreshToken();
   if (token) {
     //TODO: Change endpoint to special, that return name
@@ -18,14 +18,14 @@ async function initAuthState(dispatch: AppDispatch) {
     const credentials: ICredentials = await response.json();
     dispatch(setAuth({ user: credentials, isAuth: true, error: null }));
   }
-}
+};
 
-function useInitAuthState() {
+const useInitAuthState = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     initAuthState(dispatch);
   }, [dispatch]);
-}
+};
 
 export default useInitAuthState;

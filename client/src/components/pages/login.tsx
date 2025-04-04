@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Form from "@components/form/form";
 import { FormEvent, useEffect, useState } from "react";
 
-function Login() {
+const Login = () => {
   useOnlyUnauthorized();
   const [nameOrEmail, setNameOrEmail] = useState<string>("user@example.com");
   const [password, setPassword] = useState<string>("string");
@@ -40,6 +40,6 @@ function Login() {
       <span>{errorMessage}</span>
     </Form>
   );
-}
+};
 
 export default Login;

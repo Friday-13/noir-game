@@ -39,13 +39,13 @@ const router = createBrowserRouter([
   },
 ]);
 
-function App() {
+const App = () => {
   useInitAuthState();
   return (
     <>
       <RouterProvider router={router} />
     </>
   );
-}
+};
 
 export default App;

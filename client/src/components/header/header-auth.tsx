@@ -6,7 +6,7 @@ import styles from "./header.module.scss";
 import { MouseEvent } from "react";
 import ServerApi from "@/utils/server-api";
 
-function HeaderAuth() {
+const HeaderAuth = () => {
   const authState = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -37,6 +37,6 @@ function HeaderAuth() {
       )}
     </ul>
   );
-}
+};
 
 export default HeaderAuth;

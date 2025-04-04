@@ -7,7 +7,7 @@ interface IconProps extends HTMLAttributes<HTMLDivElement> {
   size: number;
 }
 
-function Icon({ src, alt, size, className, ...rest }: IconProps) {
+const Icon = ({ src, alt, size, className, ...rest }: IconProps) => {
   return (
     <div
       className={[styles.iconContainer, className].join(" ")}
@@ -17,6 +17,6 @@ function Icon({ src, alt, size, className, ...rest }: IconProps) {
       <img src={src} alt={alt} />
     </div>
   );
-}
+};
 
 export default Icon;

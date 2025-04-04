@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Form from "@components/form/form";
 import { FormEvent, useEffect, useState } from "react";
 
-function Register() {
+const Register = () => {
   useOnlyUnauthorized();
   const [name, setName] = useState<string>("username");
   const [email, setEmail] = useState<string>("user@example.com");
@@ -47,6 +47,6 @@ function Register() {
       {errorMessage && <span>{errorMessage}</span>}
     </Form>
   );
-}
+};
 
 export default Register;
