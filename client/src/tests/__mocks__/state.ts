@@ -1,16 +1,9 @@
 import { IAuthState } from "@/store/auth-slice";
 import { useAppSelector } from "@/store/hooks";
+import { getTestAuthState } from "@tests/__helpers__/get-test-auth-state";
 import { vi } from "vitest";
 
-const defaultTestAuth: IAuthState = {
-  isAuth: true,
-  user: {
-    name: "test user",
-    auth_token: "test-access-token",
-    refresh_token: "test-refresh-token",
-  },
-  error: null,
-};
+const defaultTestAuth = getTestAuthState();
 
 export const setStateMockValue = ({ auth }: { auth?: IAuthState }) => {
   const mockedUseAppSelector = vi.mocked(useAppSelector);

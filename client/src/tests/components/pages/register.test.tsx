@@ -1,6 +1,10 @@
 import { IAuthState, IRegister, register } from "@/store/auth-slice";
 import Register from "@components/pages/register";
 import { fireEvent, render, screen } from "@testing-library/react";
+import {
+  getTestRegisterData,
+  getTestUnauthorizedAuthState,
+} from "@tests/__helpers__/get-test-auth-state";
 import { mockUseOnlyUnauthorized } from "@tests/__mocks__/access-control";
 import { setStateMockValue } from "@tests/__mocks__/state";
 import { MemoryRouter } from "react-router-dom";
@@ -16,11 +20,7 @@ describe("Registration page", () => {
   };
 
   it("Render correctly", () => {
-    const authState: IAuthState = {
-      user: null,
-      error: null,
-      isAuth: false,
-    };
+    const authState = getTestUnauthorizedAuthState();
     setStateMockValue({ auth: authState });
     renderRegisterPage();
     const header = screen.getByRole("heading");
@@ -47,11 +47,8 @@ describe("Registration page", () => {
   });
 
   it("Try to register", () => {
-    const authState: IAuthState = {
-      isAuth: false,
-      user: null,
-      error: null,
-    };
+    const authState = getTestUnauthorizedAuthState();
+    const testUser = getTestRegisterData();
     setStateMockValue({ auth: authState });
     const registerMock = vi.mocked(register);
     renderRegisterPage();
@@ -60,9 +57,9 @@ describe("Registration page", () => {
     const emailInput = screen.getByPlaceholderText("email");
     const passwordInput = screen.getByPlaceholderText("password");
 
-    fireEvent.change(nameInput, { target: { value: "test name" } });
-    fireEvent.change(emailInput, { target: { value: "test email" } });
-    fireEvent.change(passwordInput, { target: { value: "test-password" } });
+    fireEvent.change(nameInput, { target: { value: testUser.name } });
+    fireEvent.change(emailInput, { target: { value: testUser.email } });
+    fireEvent.change(passwordInput, { target: { value: testUser.password } });
 
     const header = screen.getByRole("heading");
     const form = header.parentElement;
@@ -70,9 +67,9 @@ describe("Registration page", () => {
 
     expect(registerMock).toHaveBeenCalledOnce();
     expect(registerMock).toHaveBeenCalledWith({
-      name: "test name",
-      email: "test email",
-      password: "test-password",
+      name: testUser.name,
+      email: testUser.email,
+      password: testUser.password,
     } as IRegister);
   });
 });
