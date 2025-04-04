@@ -3,6 +3,10 @@ import {
   expectFetchContainHeader,
   expectFetchMethod,
 } from "@tests/__helpers__/fetch-expectations";
+import {
+  getTestLoginData,
+  getTestRegisterData,
+} from "@tests/__helpers__/get-test-auth-state";
 import { getFetchMock, getFetchWithRefreshMock } from "@tests/__mocks__/fetch";
 import ServerApi from "@utils/server-api";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -22,8 +26,12 @@ describe("login", () => {
   });
 
   it("Success login", async () => {
+    const testUser = getTestLoginData();
     global.fetch = getFetchMock({ status: 200, json: { token: "mockToken" } });
-    const response = await ServerApi.login("test name", "test password");
+    const response = await ServerApi.login(
+      testUser.nameOrEmail,
+      testUser.password,
+    );
     expect(response.status).toBe(200);
     expect(response.ok).toBeTruthy();
   });
@@ -72,11 +80,12 @@ describe("register", () => {
   });
 
   it("Success register", async () => {
+    const testUser = getTestRegisterData();
     global.fetch = getFetchMock({ status: 200, json: {} });
     const response = await ServerApi.register(
-      "test name",
-      "test email",
-      "test password",
+      testUser.name,
+      testUser.email,
+      testUser.password,
     );
     expect(response.status).toBe(200);
     expect(response.ok).toBeTruthy();

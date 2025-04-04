@@ -1,10 +1,14 @@
-import { IAuthState, ILogin, login } from "@/store/auth-slice";
+import { ILogin, login } from "@/store/auth-slice";
 import Login from "@components/pages/login";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { setStateMockValue } from "@tests/__mocks__/state";
 import { mockUseOnlyUnauthorized } from "@tests/__mocks__/access-control";
+import {
+  getTestLoginData,
+  getTestUnauthorizedAuthState,
+} from "@tests/__helpers__/get-test-auth-state";
 
 describe("login page", () => {
   afterEach(() => {
@@ -20,11 +24,7 @@ describe("login page", () => {
   };
 
   it("render correctly", () => {
-    const authState: IAuthState = {
-      isAuth: false,
-      user: null,
-      error: null,
-    };
+    const authState = getTestUnauthorizedAuthState();
     setStateMockValue({ auth: authState });
 
     renderLoginPage();
@@ -50,22 +50,16 @@ describe("login page", () => {
   });
 
   it("Print error message on error", () => {
-    const authState: IAuthState = {
-      isAuth: false,
-      user: null,
-      error: "test error",
-    };
+    const errorMessage = "test error";
+    const authState = getTestUnauthorizedAuthState(errorMessage);
     setStateMockValue({ auth: authState });
     renderLoginPage();
-    expect(screen.getByText("test error")).toBeInTheDocument();
+    expect(screen.getByText(errorMessage)).toBeInTheDocument();
   });
 
   it("Try to login with correct name and password", () => {
-    const authState: IAuthState = {
-      isAuth: false,
-      user: null,
-      error: null,
-    };
+    const authState = getTestUnauthorizedAuthState();
+    const testUser = getTestLoginData();
     setStateMockValue({ auth: authState });
 
     const loginMock = vi.mocked(login);
@@ -75,8 +69,10 @@ describe("login page", () => {
     const nameOrEmailInput = screen.getByPlaceholderText("name or email");
     const passwordInput = screen.getByPlaceholderText("password");
 
-    fireEvent.change(nameOrEmailInput, { target: { value: "test name" } });
-    fireEvent.change(passwordInput, { target: { value: "test-password" } });
+    fireEvent.change(nameOrEmailInput, {
+      target: { value: testUser.nameOrEmail },
+    });
+    fireEvent.change(passwordInput, { target: { value: testUser.password } });
     const header = screen.getByRole("heading");
     const form = header.parentElement;
     expect(form).toBeInTheDocument();
@@ -84,8 +80,8 @@ describe("login page", () => {
 
     expect(loginMock).toHaveBeenCalledOnce();
     expect(loginMock).toHaveBeenCalledWith({
-      nameOrEmail: "test name",
-      password: "test-password",
+      nameOrEmail: testUser.nameOrEmail,
+      password: testUser.password,
     } as ILogin);
   });
 });

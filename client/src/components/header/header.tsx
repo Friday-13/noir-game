@@ -8,7 +8,7 @@ import HeaderAuth from "./header-auth";
 import { checkAuth } from "@/store/auth-slice";
 import ServerApi from "@/utils/server-api";
 
-function Header() {
+const Header = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [isCollapsible, setIsCollapsible] = useState<boolean>(false);
   const location = useLocation();
@@ -79,6 +79,6 @@ function Header() {
       </header>
     </div>
   );
-}
+};
 
 export default Header;

@@ -2,7 +2,7 @@ import { useAppSelector } from "@/store/hooks";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function useOnlyUnauthorized() {
+export const useOnlyUnauthorized = () => {
   const navigate = useNavigate();
   const authState = useAppSelector((state) => state.auth);
 
@@ -11,4 +11,4 @@ export function useOnlyUnauthorized() {
       navigate("/");
     }
   }, [authState.isAuth, navigate]);
-}
+};
