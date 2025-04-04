@@ -5,13 +5,19 @@ import {
   IRegister,
 } from "@/store/auth-slice";
 
+const defaultName = "John Doe";
+const defaultEmail = "john.doe@example.com";
+const defaultPassword = "test-password-123";
+const defaultRefreshToken = "test-refresh-token-123";
+const defaultAuthToken = "test-auth-token-456";
+
 export const getTestUserCrendentials = (
   partialCredentials: Partial<ICredentials> = {},
 ) => {
   const user = {
-    name: "John Doe",
-    refresh_token: "test-refresh-token-123",
-    auth_token: "test-auth-token-456",
+    name: defaultName,
+    refresh_token: defaultRefreshToken,
+    auth_token: defaultAuthToken,
     ...partialCredentials,
   };
   return user;
@@ -33,8 +39,8 @@ export const getTestUnauthorizedAuthState = (error: string | null = null) => {
 
 export const getTestLoginData = (partialData: Partial<ILogin> = {}) => {
   const data: ILogin = {
-    nameOrEmail: "John Doe",
-    password: "test-password-123",
+    nameOrEmail: defaultName,
+    password: defaultPassword,
     ...partialData,
   };
   return data;
@@ -42,9 +48,9 @@ export const getTestLoginData = (partialData: Partial<ILogin> = {}) => {
 
 export const getTestRegisterData = (partialData: Partial<IRegister> = {}) => {
   const data: IRegister = {
-    name: "John Doe",
-    email: "john.doe@example.com",
-    password: "test-password-123",
+    name: defaultName,
+    email: defaultEmail,
+    password: defaultPassword,
     ...partialData,
   };
   return data;

@@ -1,4 +1,4 @@
-import { IAuthState, IRegister, register } from "@/store/auth-slice";
+import { IRegister, register } from "@/store/auth-slice";
 import Register from "@components/pages/register";
 import { fireEvent, render, screen } from "@testing-library/react";
 import {
