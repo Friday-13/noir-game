@@ -1,37 +1,32 @@
-from typing import Annotated
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
-from fastapi import APIRouter, Header, WebSocket, WebSocketDisconnect
+from server.core.websocket.auth_service import AuthService
+from server.core.websocket.connections import Connection
+from server.core.websocket.game_connection_manger import GameConnectionManager
+from server.db.session import SessionDep
 
 game_router = APIRouter(prefix="/games", tags=["game"])
 
-
-class Connection:
-    def __init__(self, client_id: str, websocket: WebSocket):
-        self.id = client_id
-        self.websocket = websocket
+auth_service = AuthService()
+manager = GameConnectionManager(auth_service)
 
 
-class ConnectionManager:
-    def __init__(self):
-        self.active_clients: list[Connection] = []
+@game_router.websocket("/ws")
+async def game(session: SessionDep, websocket: WebSocket):
+    unauth_client = Connection(websocket)
+    client = await manager.authorize_connection(unauth_client, session)
 
-    async def connect(self, client: Connection):
-        await client.websocket.accept()
-        self.active_clients.append(client)
+    if not client:
+        return
 
-    def disconnect(self, client: Connection):
-        self.active_clients.remove(client)
-
-    async def send_personal_message(self, message: str, client: Connection):
-        await client.websocket.send_text(message)
-
-    async def broadcast(self, message: str, from_client: Connection):
-        for client in self.active_clients:
-            if client != from_client:
-                await client.websocket.send_text(message)
-
-
-manager = ConnectionManager()
+    try:
+        while True:
+            data = await websocket.receive_text()
+            await manager.send_personal_message(f"You wrote: {data}", client)
+            await manager.broadcast(f"Client says: {data}", client)
+    except WebSocketDisconnect:
+        await manager.disconnect(client)
+        await manager.broadcast("Client left the chat", client)
 
 
 @game_router.post("/create")
@@ -42,17 +37,3 @@ async def create_game():
 @game_router.get("/list")
 async def list_game():
     pass
-
-
-@game_router.websocket("/ws")
-async def game(websocket: WebSocket, client_id: Annotated[int, Header()]):
-    client = Connection(str(client_id), websocket)
-    await manager.connect(client)
-    try:
-        while True:
-            data = await websocket.receive_text()
-            await manager.send_personal_message(f"You wrote: {data}", client)
-            await manager.broadcast(f"Client #{client_id} says: {data}", client)
-    except WebSocketDisconnect:
-        manager.disconnect(client)
-        await manager.broadcast(f"Client #{client_id} left the chat", client)
