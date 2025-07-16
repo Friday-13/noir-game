@@ -1,0 +1,8 @@
+node_modules
+setpath.sh
+dist
+.git
+db
+doc
+test
+coverage
