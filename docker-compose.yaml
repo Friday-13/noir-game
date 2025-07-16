@@ -1,0 +1,37 @@
+services:
+  api:
+    image: server
+    build: ./server/
+    ports:
+      - 8001:8000
+    restart: on-failure
+    # volumes:
+    #   - logs:/usr/app/logs
+    develop:
+      watch:
+        - action: sync
+          path: ./server
+          target: /usr/app/server
+    networks:
+      - noir-network
+  
+  client:
+    image: client
+    build: ./client/
+    ports: 
+      - 5173:5173
+    develop:
+      watch:
+        - action: sync
+          path: ./client
+          target: /usr/app/client
+    networks:
+      - noir-network
+
+networks:
+  noir-network:
+    name: noir-network
+    driver: bridge
+
+volumes:
+  logs:
